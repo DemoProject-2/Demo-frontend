@@ -76,6 +76,12 @@ export default function Register({ setLoggedIn, loggedIn }) {
     account_type: "",
   });
 
+//   const handleRegister = (event) => {
+//     event.preventDefault();
+//     register(business);
+//     history.push("/profile/home");
+//     setLoggedIn(true);
+//   };
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(user)
@@ -93,7 +99,7 @@ export default function Register({ setLoggedIn, loggedIn }) {
 
   let accountType=user.account_type
   
-  axios.post('http://localhost:3030/users/register',{ //here add link from route to register a user
+  axios.post('https://mental-health-database.herokuapp.com/users/register',{ //here add link from route to register a user
     first_name:firstName,
     last_name:lastName,
     user_name:userName,
@@ -120,8 +126,8 @@ export default function Register({ setLoggedIn, loggedIn }) {
   //   account_type: "patient"
   //   })
 
-    _setToken('aklsdjflaksjflasf')
-    _setUser({ id: 1, first_name: "erwins",last_name:'saget', user_name:'erweezy', account_type:'patient'})    
+  _setToken('aklsdjflaksjflasf')
+  _setUser({ id: 1, first_name: firstName,last_name:lastName, user_name:userName, email:eMail, password: passWord, medical_issue: medicalIssue, account_type:accountType})
   } catch (err) {
     console.log('err', err.message)
   }
@@ -241,7 +247,7 @@ export default function Register({ setLoggedIn, loggedIn }) {
             component = {Link} to = "/sign-in"
             onClick={handleSubmit}
           >
-            Sign Up
+            Sign In
           </Button>
               <Typography 
               justify="center"
