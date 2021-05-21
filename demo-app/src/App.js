@@ -1,12 +1,12 @@
-import React from "react";
-import Home from "./components/Home.js"
-import SignIn from "./components/SignIn.js"
-import AccountProfile from "./components/AccountProfile.js"
-import Register from "./components/Register.js"
-import Search from "./components/Search.js"
-import Chat from "./components/Chat.js"
-import { BrowserRouter as Router, Switch, Route, } from "react-router-dom";
-import Notes from "./components/Notes.js";
+import React from 'react';
+import Home from './components/Home.js'
+import SignIn from './components/SignIn.js'
+import AccountProfile from './components/AccountProfile.js'
+import Register from './components/Register.js'
+import Search from './components/Search.js'
+import Chat from './components/Chat.js'
+import { BrowserRouter as Router, Switch, Route, } from 'react-router-dom';
+import Notes from './components/Notes.js';
 import { AuthContext } from './context/auth-context'
 import SideDrawer from './components/SideDrawer.js'
 import SideDrawer2 from './components/SideDrawer2.js'
@@ -19,16 +19,16 @@ function AuthenticatedApp() {
         <Route path='/my-notes'>
           <Notes />
         </Route>
-        <Route path ="/search">
+        <Route path ='/search'>
           <Search />
         </Route>
-        <Route path="/my-account">
+        <Route path='/my-account'>
           <AccountProfile />
         </Route>
-        <Route path="/chat">
+        <Route path='/chat'>
           <Chat />
         </Route>
-        <Route path="*">
+        <Route path='*'>
           <div>
             not found
           </div>
@@ -46,10 +46,10 @@ function UnauthenticatedApp() {
         <Route path='/register'>
           <Register />
         </Route>
-        <Route path="/sign-in">
+        <Route path='/sign-in'>
           <SignIn />
         </Route>
-        <Route path="/">
+        <Route path='/'>
           <Home />
         </Route>
       </Switch>
@@ -67,33 +67,3 @@ export default function App() {
   )
 }
 
-<<<<<<< HEAD
-
-// import logo from './logo.svg';
-// import './App.css';
-// import React from 'react';
-// function App() {
-//   return (
-//     <div className="App">
-//     <p>hi</p>
-//       <header className="App-header">
-//         <img src={logo} className="App-logo" alt="logo" />
-//         <p>
-//           Welcome <code>src/App.js</code> and save to reload.
-//         </p>
-//         <a
-//           className="App-link"
-//           href="https://reactjs.org"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           Learn React
-//         </a>
-//       </header>
-//     </div>
-//   );
-// }
-
-export default App;
-=======
->>>>>>> 7a0af85ae6a6d960414b4e7fd7398e19dce63925

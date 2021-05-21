@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import clsx from 'clsx';
 import { makeStyles, useTheme, withStyles } from '@material-ui/core/styles';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
@@ -6,7 +6,7 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded';
 import PostAddRoundedIcon from '@material-ui/icons/PostAddRounded';
-import { BrowserRouter as Router, Link} from "react-router-dom";
+import { BrowserRouter as Router, Link} from 'react-router-dom';
 import DehazeSharpIcon from '@material-ui/icons/DehazeSharp';
 import {
   List,
@@ -20,12 +20,12 @@ import {
   CssBaseline,
   AppBar,
   Toolbar,
-} from "@material-ui/core";
+} from '@material-ui/core';
 const drawerWidth = 240;
 
 const TypographyStyle = withStyles({
   root: {
-    color: "#375C23",
+    color: '#375C23',
   }
 })(Typography);
 
@@ -103,18 +103,18 @@ return(
   <div className={classes.root}>
     <CssBaseline />
     <AppBar
-      position="fixed"
-      style={{background:"#C2F0AA"}}
+      position='fixed'
+      style={{background:'#C2F0AA'}}
       className={clsx(classes.appBar, {
         [classes.appBarShift]: open,
       })}
     >
     <Toolbar>
-        <Typography variant="h6" noWrap className={classes.title} >
+        <Typography variant='h6' noWrap className={classes.title} >
         </Typography>
         <IconButton
-          aria-label="open drawer"
-          edge="end"
+          aria-label='open drawer'
+          edge='end'
           onClick={handleDrawerOpen}
           className={clsx(open && classes.hide)}
         >
@@ -134,8 +134,8 @@ return(
     </main>
     <Drawer
       className={classes.drawer}
-      variant="persistent"
-      anchor="right"
+      variant='persistent'
+      anchor='right'
       open={open}
       classes={{
         paper: classes.drawerPaper,
