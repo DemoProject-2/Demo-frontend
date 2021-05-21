@@ -194,10 +194,10 @@ return(
             <ListItemText primary={text} />
           </ListItem>
         ))} */}
-       {['Previous Conversations'].map((text, index) => (
+       {['Saved Users'].map((text, index) => (
           <ListItem 
           button key={text}
-          component={Link} to="/previous-conversations"
+          component={Link} to="/saved"
           >
             <ListItemIcon><PeopleOutlineIcon style={{color:'#375C23'}}/></ListItemIcon>
             <ListItemText primary={text} />

@@ -1,5 +1,4 @@
 import { makeStyles } from "@material-ui/core";
-import "./Home.css"
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import SideDrawer from "./SideDrawer.js"
@@ -26,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function SavedSpecialists(){
+export default function SavedUsers(){
   const classes = useStyles();
  return(
     <div>
