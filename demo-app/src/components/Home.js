@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react'
 import { Fade, makeStyles } from '@material-ui/core'
 import './Home.css'
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
 import SideDrawer from './SideDrawer.js'
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 const useStyles = makeStyles(() => ({
     root: {
         flexGrow: 1,
@@ -30,10 +29,10 @@ const useStyles = makeStyles(() => ({
 
 export default function Home(){
     const classes = useStyles()
-    const [checked, setChecked] = useState(false)
+    const [checked, setChecked] = useState(false);
     useEffect(() => {
-        setChecked(true)
-    }, [])
+      setChecked(true);
+    }, []);
     let isSignedIn = window.localStorage.getItem('token') in [null, ''] //? false : true;
     if (isSignedIn===true) { //set to true
         return(

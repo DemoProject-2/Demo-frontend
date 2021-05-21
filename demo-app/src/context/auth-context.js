@@ -6,8 +6,8 @@ const AuthContext = React.createContext({
 })
 
 const AuthProvider = (props) => {
-    const [user, setUser] = React.useState(null);
-    const [token, setToken] = React.useState(null);
+    const [user, setUser] = React.useState(null)
+    const [token, setToken] = React.useState(null)
 
     function _setToken(jwtToken) {
         setToken(jwtToken)
