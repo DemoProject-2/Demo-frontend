@@ -10,6 +10,8 @@ import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded';
 import { BrowserRouter as Router, Link } from "react-router-dom";
 import DehazeSharpIcon from '@material-ui/icons/DehazeSharp';
 import { AuthContext } from '../context/auth-context'
+import PeopleOutlineIcon from '@material-ui/icons/PersonOutline';
+
 
 import {
   List,
@@ -192,15 +194,15 @@ return(
             <ListItemText primary={text} />
           </ListItem>
         ))} */}
-       {/* {['Saved'].map((text, index) => (
+       {['Previous Conversations'].map((text, index) => (
           <ListItem 
           button key={text}
-          component={Link} to="/saved-doctors"
+          component={Link} to="/previous-conversations"
           >
             <ListItemIcon><PeopleOutlineIcon style={{color:'#375C23'}}/></ListItemIcon>
             <ListItemText primary={text} />
           </ListItem>
-        ))} */}
+        ))}
        {['Find Specialist'].map((text, index) => (
           <ListItem 
           button key={text}

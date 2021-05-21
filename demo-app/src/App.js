@@ -10,6 +10,7 @@ import Notes from "./components/Notes.js";
 import { AuthContext } from './context/auth-context'
 import SideDrawer from './components/SideDrawer.js'
 import SideDrawer2 from './components/SideDrawer2.js'
+import PreviousConversations from './components/PreviousConversations.js'
 function AuthenticatedApp() {
   return (
     <Router>
@@ -29,6 +30,9 @@ function AuthenticatedApp() {
         </Route>
         <Route path="/">
           <Home />
+        </Route>
+        <Route path='previous-conversations'>
+          <PreviousConversations />
         </Route>
       </Switch>
     </Router>

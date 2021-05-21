@@ -163,13 +163,13 @@ export default function Register({ setLoggedIn, loggedIn }) {
             <form autoComplete="off" onSubmit={handleSubmit}>
             <p className={classes.justify}><input 
                 type="radio" 
-                value="Specialist" 
+                value="specialist" 
                 onClick={setUser} 
                 name="account_type" />
                 <t>Specialist</t>
               <input 
                 type="radio" 
-                value="Regular User" 
+                value="patient" 
                 onClick={setUser} 
                 name="account_type" />
                 <t>Looking for a Specialist</t><br/></p>

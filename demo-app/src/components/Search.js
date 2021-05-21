@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
     border: " 1px solid #dfe1e5",
     borderRadius: "24px",
     height: "44px",
-    margin: "-7vw auto 20px",
+    margin: "10px auto 20px",
     width: "400px",
     outline: "none",
     textIndent: "30px",
@@ -74,11 +74,6 @@ const useStyles = makeStyles((theme) => ({
   },
   user_container:{
     padding:'5vw'
-  },
-  btnPosition:{
-    margin: '-6vw',
-    paddingBottom:'9vw',
-    paddingRight:'40vw'
   }
 }));
 
@@ -107,20 +102,29 @@ if(accountType==="patient"){
       .then(res =>{
         const users=res.data
         const usersList=users.map((search)=><Grid><Card><b>{search.user_name}</b></Card></Grid>)
-        ReactDOM.render(<div>{usersList}</div>,document.getElementById('list'))})}
+        if(users.length>0){
+          ReactDOM.render(<div>{usersList}</div>,document.getElementById('list'))}
+          else{
+            ReactDOM.render(<h1>Match Could Not Be Found</h1>,document.getElementById('list'))}})}
   if(userName&&!medicalIssue){
     console.log('searching for', userName)
     axios.get(`https://mental-health-database.herokuapp.com/users/username/${userName}`)  //get specialist by username fix to only specialists
       .then(res =>{
         const users=res.data
         const usersList=users.map((search)=><Grid><Card><b>{search.user_name}</b></Card></Grid>)
-        ReactDOM.render(<div>{usersList}</div>,document.getElementById('list'))})}
+        if(users.length>0){
+          ReactDOM.render(<div>{usersList}</div>,document.getElementById('list'))}
+          else{
+            ReactDOM.render(<h1>Match Could Not Be Found</h1>,document.getElementById('list'))}})}
   if(medicalIssue&&userName){
     axios.get(`https://mental-health-database.herokuapp.com/users/all-specialist/{}`)  //get specialist by medical issue and username needs to edit
       .then(res =>{
         const users=res.data
         const usersList=users.map((search)=><Grid><Card><b>{search.user_name}</b></Card></Grid>)
-        ReactDOM.render(<div>{usersList}</div>,document.getElementById('list'))})}
+        if(users.length>0){
+          ReactDOM.render(<div>{usersList}</div>,document.getElementById('list'))}
+          else{
+            ReactDOM.render(<h1>Match Could Not Be Found</h1>,document.getElementById('list'))}})}
   if(!medicalIssue.length&&!userName){
     console.log(medicalIssue)
     axios.get(`https://mental-health-database.herokuapp.com/users/all-specialist/specialist`)  //get all specialist 
@@ -128,7 +132,10 @@ if(accountType==="patient"){
         const users=res.data
         console.log(users)
         const usersList=users.map((search)=><Grid><Card><b>{search.user_name}</b></Card></Grid>)
-        ReactDOM.render(<div>{usersList}</div>,document.getElementById('list'))})}   
+        if(users.length>0){
+          ReactDOM.render(<div>{usersList}</div>,document.getElementById('list'))}
+          else{
+            ReactDOM.render(<h1>Match Could Not Be Found</h1>,document.getElementById('list'))}})}  
 }
 else if(accountType==="specialist"){
   console.log('searching for patient')
@@ -137,29 +144,40 @@ else if(accountType==="specialist"){
     axios.get(`https://mental-health-database.herokuapp.com/users/all-patients/${medicalIssue}`)  //get patients by medical issue NOT WORKING REVISE URL
       .then(res =>{
         const users=res.data
-        const usersList=users.map((search)=><Grid><Card><b>{search.user_name},{search.medical_issue}</b></Card></Grid>)
-        ReactDOM.render(<div>{usersList}</div>,document.getElementById('list'))})}
+        const usersList=users.map((search)=><p>{search.user_name},{search.medical_issue}</p>)
+        if(users.length>0){
+          ReactDOM.render(<div>{usersList}</div>,document.getElementById('list'))}
+          else{
+            ReactDOM.render(<h1>Match Could Not Be Found</h1>,document.getElementById('list'))}})}
   if(!medicalIssue&&userName){
     console.log('searching for patient by username')
     axios.get(`https://mental-health-database.herokuapp.com/users/username/${userName}`)  //get patients by username DONE AND WORKING
       .then(res =>{
         const users=res.data
-        const usersList=users.map((search)=><Grid><Card><b>{search.user_name}</b></Card></Grid>)
-        ReactDOM.render(<div>{usersList}</div>,document.getElementById('list'))})}
+        const usersList=users.map((search)=><p>{search.user_name}</p>)
+        if(users.length>0){
+          ReactDOM.render(<div>{usersList}</div>,document.getElementById('list'))}
+          else{
+            ReactDOM.render(<h1>Match Could Not Be Found</h1>,document.getElementById('list'))}})}
   if(medicalIssue&&userName){
     axios.get(``)  //get patients by medical issue and username
       .then(res =>{
         const users=res.data
-        const usersList=users.map((search)=><Grid><Card><b>{search.user_name}</b></Card></Grid>)
-        ReactDOM.render(<div>{usersList}</div>,document.getElementById('list'))})}
+        const usersList=users.map((search)=><p>{search.user_name}</p>)
+        if(users.length>0){
+          ReactDOM.render(<div>{usersList}</div>,document.getElementById('list'))}
+          else{
+            ReactDOM.render(<h1>Match Could Not Be Found</h1>,document.getElementById('list'))}})}
   if(!medicalIssue&&!userName){
     console.log('searching for all patients no filter selected')
     axios.get(`https://mental-health-database.herokuapp.com/users/all-patients/patient`)  //get all patients DONE AND WORKING
     .then(res =>{
       const users=res.data
-      const usersList=users.map((search)=><Grid><Card><b>{search.user_name}, {search.medical_issue}</b></Card></Grid>)
-      ReactDOM.render(<div>{usersList}</div>,document.getElementById('list'))})}
-          }
+      const usersList=users.map((search)=><p><b>{search.user_name}, {search.medical_issue}</b></p>)
+      if(users.length>0){
+        ReactDOM.render(<div>{usersList}</div>,document.getElementById('list'))}
+        else{
+          ReactDOM.render(<h1>Match Could Not Be Found</h1>,document.getElementById('list'))}})}          }
         }
     return (
       <body>
@@ -176,7 +194,6 @@ else if(accountType==="specialist"){
             onChange={setUser}
             className={classes.searchfield}
           />
-          <div className={classes.btnPosition}>
           <Button
             type="submit"
             className={classes.searchbtn}
@@ -186,7 +203,6 @@ else if(accountType==="specialist"){
           >
             Search
           </Button>
-          </div>
         </form>
         <div className='page-container'>
         <div className='filter-container'>
