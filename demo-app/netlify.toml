@@ -1,0 +1,30 @@
+[[redirects]]
+from = "/demo-app/src/components/Home.js"
+to = "/"
+status = 301
+force = false
+[[redirects]]
+from = "/demo-app/src/components/AccountProfile.js"
+to = "/my-notes"
+status = 301
+force = false
+[[redirects]]
+from = "/demo-app/src/components/Register.js"
+to = "/register"
+status = 301
+force = false
+[[redirects]]
+from = "/demo-app/src/components/SignIn.js"
+to = "/sign-in"
+status = 301
+force = false
+[[redirects]]
+from = "/demo-app/src/components/Chat.js"
+to = "/chat"
+status = 301
+force = false
+[[redirects]]
+from = "/demo-app/src/components/Search.js"
+to = "/search"
+status = 301
+force = false
