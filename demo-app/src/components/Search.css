@@ -30,9 +30,8 @@ filterby{
 }
 .filter-container{
     display: inline;
-    padding-top: 10vw;
     width: 20vw;
-    padding-left: 3vw;
+    margin: -5vw -25px
 }
 .list{
     width:100%;

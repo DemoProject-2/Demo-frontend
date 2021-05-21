@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
     border: " 1px solid #dfe1e5",
     borderRadius: "24px",
     height: "44px",
-    margin: "20px auto 20px",
+    margin: "-7vw auto 20px",
     width: "400px",
     outline: "none",
     textIndent: "30px",
@@ -74,6 +74,11 @@ const useStyles = makeStyles((theme) => ({
   },
   user_container:{
     padding:'5vw'
+  },
+  btnPosition:{
+    margin: '-6vw',
+    paddingBottom:'9vw',
+    paddingRight:'40vw'
   }
 }));
 
@@ -171,6 +176,7 @@ else if(accountType==="specialist"){
             onChange={setUser}
             className={classes.searchfield}
           />
+          <div className={classes.btnPosition}>
           <Button
             type="submit"
             className={classes.searchbtn}
@@ -180,6 +186,7 @@ else if(accountType==="specialist"){
           >
             Search
           </Button>
+          </div>
         </form>
         <div className='page-container'>
         <div className='filter-container'>
@@ -189,11 +196,12 @@ else if(accountType==="specialist"){
           <div>
             <h3 className={classes.textcolor}>Medical Issue:</h3>
           <input type="radio" value="Anxiety" onClick={setUser} name="medical_issue" /><t className={classes.textcolor}>Anxiety</t><br/>
-          <input type="radio" value="Depression" onClick={setUser} name="medical_issue" /><t className={classes.textcolor}>Depression</t><br/>
+          <input type="radio" value="ADHD" onClick={setUser} name="medical_issue" /><t className={classes.textcolor}>ADHD</t><br/>
           <input type="radio" value="Bipolar Disorder" onClick={setUser} name="medical_issue" /><t className={classes.textcolor}>Bipolar Disorder</t><br/>
+          <input type="radio" value="Depression" onClick={setUser} name="medical_issue" /><t className={classes.textcolor}>Depression</t><br/>
+          <input type="radio" value="Dissociative Disorder" onClick={setUser} name="medical_issue" /><t className={classes.textcolor}>Dissociative Disorder</t><br/>
           <input type="radio" value="Eating Disorder" onClick={setUser} name="medical_issue" /><t className={classes.textcolor}>Eating Disorder</t><br/>
           <input type="radio" value="Post-traumatic Stress Disorder" onClick={setUser} name="medical_issue" /><t className={classes.textcolor}>Post-traumatic Stress Disorder</t><br/>
-          <input type="radio" value="Dissociative Disorder" onClick={setUser} name="medical_issue" /><t className={classes.textcolor}>Dissociative Disorder</t><br/>
           </div>
         {/* <div><ViewButton /></div><br/> */}
         <Button
