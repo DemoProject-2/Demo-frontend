@@ -1,8 +1,6 @@
 import { useFormFields} from "../lib/customHooks";
 import ReactDOM from 'react-dom';
 import {
-  Grid,
-  Card,
   makeStyles,
   Button,
 } from "@material-ui/core";
@@ -65,15 +63,37 @@ const useStyles = makeStyles((theme) => ({
     height: "auto",
     borderWidth: "0",
     borderRadius: "20px",
-    top: 20,
-    marginBottom: 50,
-    left:'46vw',
+    top: -60,
+    marginBottom: '2%',
+    left:'26%',
   },
   textcolor:{
     color:'#375C23'
   },
   user_container:{
     padding:'5vw'
+  },
+  btnFormat:{
+    "&:hover": {
+      borderColor: "#375C23",
+      boxShadow: "0 1px 6px #adcaec",
+      backgroundColor: "#C2F0AA",
+      color: "#375C23"
+    },
+    color: "#f6f8f9",
+    background: "#375C23",
+    padding: "12px 18px",
+    fontSize: "14px",
+    lineHeight: "16px",
+    height: "auto",
+    borderWidth: "0",
+    borderRadius: "20px",
+    top: 20,
+    marginBottom: 40,
+    left:'36vw',
+  },
+  extraspace: {
+    margin:'-9%'
   }
 }));
 
@@ -88,12 +108,11 @@ export default function Search() {
 
 const handleSubmit = e =>{
 e.preventDefault()
-let accountType=user.account_type //let account type = to account type of search logged in from auth content
-let medicalIssue=JSON.stringify(search.medical_issue)
-medicalIssue=medicalIssue.replace(/['"]+/g, '')
-let userName=JSON.stringify(search.username)
-userName=userName.replace(/['"]+/g, '')
-console.log(user.account_type)
+  let accountType=user.account_type //let account type = to account type of search logged in from auth content
+  let medicalIssue=JSON.stringify(search.medical_issue)
+  medicalIssue=medicalIssue.replace(/['"]+/g, '')
+  let userName=JSON.stringify(search.username)
+  userName=userName.replace(/['"]+/g, '')
 //filtering specs
 if(accountType==="patient"){
   if(medicalIssue&&!userName){
@@ -101,7 +120,7 @@ if(accountType==="patient"){
     axios.get(``)  //get specialist by medical issue  
       .then(res =>{
         const users=res.data
-        const usersList=users.map((search)=><div><b>{search.user_name}</b>{search.medical_issue}<Button>Add to Favorites</Button><Button>Message</Button></div>)
+        const usersList=users.map((search)=><div><div><b>{search.user_name}</b></div><div><Button className={classes.btnFormat}>Add to Favorites</Button><Button className={classes.btnFormat}>Message</Button></div></div>)
         if(users.length>0){
           ReactDOM.render(<div>{usersList}</div>,document.getElementById('list'))}
           else{
@@ -111,7 +130,7 @@ if(accountType==="patient"){
     axios.get(`https://mental-health-database.herokuapp.com/users/username/${userName}`)  //get specialist by username fix to only specialists
       .then(res =>{
         const users=res.data
-        const usersList=users.map((search)=><div><b>{search.user_name}</b>{search.medical_issue}<Button>Add to Favorites</Button><Button>Message</Button></div>)
+        const usersList=users.map((search)=><div><div><b>{search.user_name}</b><p>Relevant Health Concern: {search.medical_issue}</p></div><div><Button className={classes.btnFormat}>Add to Favorites</Button><Button className={classes.btnFormat}>Message</Button></div></div>)
         if(users.length>0){
           ReactDOM.render(<div>{usersList}</div>,document.getElementById('list'))}
           else{
@@ -120,7 +139,7 @@ if(accountType==="patient"){
     axios.get(`https://mental-health-database.herokuapp.com/users/all-specialist/{}`)  //get specialist by medical issue and username needs to edit
       .then(res =>{
         const users=res.data
-        const usersList=users.map((search)=><div><b>{search.user_name}</b>{search.medical_issue}<Button>Add to Favorites</Button><Button>Message</Button></div>)
+        const usersList=users.map((search)=><div><div><b>{search.user_name}</b><p>Relevant Health Concern: {search.medical_issue}</p></div><div><Button className={classes.btnFormat}>Add to Favorites</Button><Button className={classes.btnFormat}>Message</Button></div></div>)
         if(users.length>0){
           ReactDOM.render(<div>{usersList}</div>,document.getElementById('list'))}
           else{
@@ -131,7 +150,7 @@ if(accountType==="patient"){
       .then(res =>{
         const users=res.data
         console.log(users)
-        const usersList=users.map((search)=><div><b>{search.user_name}</b>{search.medical_issue}<Button>Add to Favorites</Button><Button>Message</Button></div>)
+        const usersList=users.map((search)=><div><div><b>{search.user_name}</b><p>Relevant Health Concern: {search.medical_issue}</p></div><div><Button className={classes.btnFormat}>Add to Favorites</Button><Button className={classes.btnFormat}>Message</Button></div></div>)
         if(users.length>0){
           ReactDOM.render(<div>{usersList}</div>,document.getElementById('list'))}
           else{
@@ -141,29 +160,42 @@ else if(accountType==="specialist"){
   console.log('searching for patient')
   if(medicalIssue&&!userName){
     console.log('searching for patient by medical issue')
-    axios.get(`https://mental-health-database.herokuapp.com/users/all-patients/${medicalIssue}`)  //get patients by medical issue NOT WORKING REVISE URL
+    axios.get(`https://mental-health-database.herokuapp.com/users/specialty-users/${medicalIssue}`)  //get patients by medical issue DONE AND WORKING
       .then(res =>{
         const users=res.data
-        const usersList=users.map((search)=><div><b>{search.user_name}</b>{search.medical_issue}<Button>Add to Favorites</Button><Button>Message</Button></div>)
+        const patients=[]
+        for(let i=0; i<users.length; i++){
+          if(users[i].account_type==='patient'){
+            patients.push(users[i])
+          }
+        }
+        const usersList=patients.map((search)=><div><div><b>{search.user_name}</b><p>Relevant Health Concern: {search.medical_issue}</p></div><div><Button className={classes.btnFormat}>Add to Favorites</Button><Button className={classes.btnFormat}>Message</Button></div></div>)
         if(users.length>0){
-          ReactDOM.render(<div>{usersList}</div>,document.getElementById('list'))}
-          else{
-            ReactDOM.render(<h1>Match Could Not Be Found</h1>,document.getElementById('list'))}})}
+           ReactDOM.render(<div>{usersList}</div>,document.getElementById('list'))}
+           else{
+           ReactDOM.render(<h1>Match Could Not Be Found</h1>,document.getElementById('list'))}
+      })}
   if(!medicalIssue&&userName){
     console.log('searching for patient by username')
     axios.get(`https://mental-health-database.herokuapp.com/users/username/${userName}`)  //get patients by username DONE AND WORKING
       .then(res =>{
         const users=res.data
-        const usersList=users.map((search)=><div><b>{search.user_name}</b>{search.medical_issue}<Button>Add to Favorites</Button><Button>Message</Button></div>)
+        const usersList=users.map((search)=><div><div><b>{search.user_name}</b><p>Relevant Health Concern: {search.medical_issue}</p></div><div><Button className={classes.btnFormat}>Add to Favorites</Button><Button className={classes.btnFormat}>Message</Button></div></div>)
         if(users.length>0){
           ReactDOM.render(<div>{usersList}</div>,document.getElementById('list'))}
           else{
             ReactDOM.render(<h1>Match Could Not Be Found</h1>,document.getElementById('list'))}})}
   if(medicalIssue&&userName){
-    axios.get(``)  //get patients by medical issue and username
+    axios.get(`https://mental-health-database.herokuapp.com/users/username/${userName}`)  //get patients by medical issue and username
       .then(res =>{
         const users=res.data
-        const usersList=users.map((search)=><div><b>{search.user_name}</b>{search.medical_issue}<Button>Add to Favorites</Button><Button>Message</Button></div>)
+        const patients=[]
+        for(let i=0; i<users.length; i++){
+          if(users[i].medical_issue===medicalIssue){
+            patients.push(users[i])
+          }
+        }
+        const usersList=patients.map((search)=><div><div><b>{search.user_name}</b><p>Relevant Health Concern: {search.medical_issue}</p></div><div><Button className={classes.btnFormat}>Add to Favorites</Button><Button className={classes.btnFormat}>Message</Button></div></div>)
         if(users.length>0){
           ReactDOM.render(<div>{usersList}</div>,document.getElementById('list'))}
           else{
@@ -173,7 +205,7 @@ else if(accountType==="specialist"){
     axios.get(`https://mental-health-database.herokuapp.com/users/all-patients/patient`)  //get all patients DONE AND WORKING
     .then(res =>{
       const users=res.data
-      const usersList=users.map((search)=><div><b>{search.user_name}</b>{search.medical_issue}<Button>Add to Favorites</Button><Button>Message</Button></div>)
+      const usersList=users.map((search)=><div><div><b>{search.user_name}</b><p>Relevant Health Concern: {search.medical_issue}</p></div><div><Button className={classes.btnFormat}>Add to Favorites</Button><Button className={classes.btnFormat}>Message</Button></div></div>)
       if(users.length>0){
         ReactDOM.render(<div>{usersList}</div>,document.getElementById('list'))}
         else{
@@ -183,6 +215,7 @@ else if(accountType==="specialist"){
       <body>
         <SideDrawer />
         {/* Form now prints to console, now just needs to change what is displayed to the screen */}
+
         <form>
           <input 
             margin="small"

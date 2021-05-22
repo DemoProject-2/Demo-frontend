@@ -31,20 +31,20 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: '180%',
   },
   welcome: {
-    paddingLeft:'10vw',
-    margin:'11vw 10px'
+    paddingLeft:'10%',
+    margin:'11% 1%'
   },
   userInfo: { 
-    paddingLeft:'10vw',
-    margin:'-11vw 10px'
+    paddingLeft:'10%',
+    margin:'-11% 1%'
   },
   userIcon: {
-    paddingLeft:'10vw',
-    margin:'-9vw 10px'
+    paddingLeft:'10%',
+    margin:'-9% 1%'
   },
   EditAccountInfodiv: {
     paddingLeft:'30vw',
-    margin: '-25vw 1px'
+    margin: '-25% 1%'
   },
   editbtn: {
     "&:hover": {

@@ -98,8 +98,12 @@ export default function Register({ setLoggedIn, loggedIn }) {
   let medicalIssue=user.medical_issue
 
   let accountType=user.account_type
-  
-  axios.post('https://mental-health-database.herokuapp.com/users/register',{ //here add link from route to register a user
+  if(!firstName||!lastName||!userName||!passWord||!eMail||!medicalIssue){
+    console.log("Field not valid")
+    alert('Fields Invalid Please Correct Issue and Try Again')
+  }
+  else{
+    axios.post('https://mental-health-database.herokuapp.com/users/register',{ //here add link from route to register a user
     first_name:firstName,
     last_name:lastName,
     user_name:userName,
@@ -131,6 +135,7 @@ export default function Register({ setLoggedIn, loggedIn }) {
   } catch (err) {
     console.log('err', err.message)
   }
+}
 }
   
 
