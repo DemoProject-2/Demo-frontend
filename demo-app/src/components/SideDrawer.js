@@ -194,7 +194,7 @@ return(
             <ListItemText primary={text} />
           </ListItem>
         ))} */}
-       {['Saved Users'].map((text, index) => (
+       {['Favorites'].map((text, index) => (
           <ListItem 
           button key={text}
           component={Link} to="/saved"
@@ -203,7 +203,7 @@ return(
             <ListItemText primary={text} />
           </ListItem>
         ))}
-       {['Find Specialist'].map((text, index) => (
+       {['Find User'].map((text, index) => (
           <ListItem 
           button key={text}
           component={Link} to='/search'
