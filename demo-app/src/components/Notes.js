@@ -46,6 +46,9 @@ const useStyles = makeStyles((theme) => ({
     top: 30,
     marginBottom: 50,
   },
+  note_container: {
+    margin:'1% 20%'
+  },
   text: {
       width:'400px',
       padding: '2vw'
@@ -70,24 +73,24 @@ export default function Notes(){
 
  return(
     <div>
-      <SideDrawer />
-    <Paper className={classes.paper}>
-        <Grid container spacing={2}>
-        <form>
+          <div className={classes.note_container}>
+          <Paper className={classes.paper}>
+          <Grid container spacing={2}>
+
+            <form>
           <Grid item>
-            <textarea name="content" defaultValue={note.content} onChange={setNote} rows='7' cols='230' className={classes.text}></textarea>
+            <textarea name="content" defaultValue={note.content} onChange={setNote} rows='7' cols='50' className={classes.text} placeholder='Please write a note about how you are feeling, what you wish to discuss with your specialist, or anything on your mind.'></textarea>
           </Grid>
           <Grid item xs={12} sm container>
           </Grid>
-          <Button onClick={submitNote} className={classes.notebtn}>Save Note</Button>
+          <Button type='submit' onClick={submitNote} className={classes.notebtn} onClick={submitNote}>Save Note</Button>
           </form>
-        </Grid>
-      </Paper><br/>
-      <div className='page-container'>
-        <Paper>
+          </Grid>
+          </Paper>
+          <div className={classes.page_padding}><div className='page-container'>
             <Grid item id='notes'></Grid>
-        </Paper>
-      </div>
+      </div></div>
+          </div>
       </div>
   )
 }

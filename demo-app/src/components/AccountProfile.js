@@ -120,16 +120,7 @@ export default function AccountProfile(){
   const [note, setNote] = useFormFields({
     content:""
 })
-  const submitNote = e =>{
-    e.preventDefault()
-    let noted=JSON.stringify(note.content)
-    noted=noted.replace(/['"]+/g, '')
-    notes.push(noted)
-    console.log(notes)
-    ReactDOM.render(
-      <div >{notes}</div>,document.getElementById('notes')
-    )
-}
+
  return(
     <div>
     <SideDrawer />
@@ -137,24 +128,7 @@ export default function AccountProfile(){
             <h1 className={classes.welcome}>{user.user_name}'s Page</h1><br />
             <h3 className={classes.userInfo}>Related Mental Health concern: {user.medical_issue}</h3>
             <div className={classes.EditAccountInfodiv}><Button className={classes.editbtn}>Edit Account Info</Button></div>
-          <div className={classes.note_container}>
-          <Paper className={classes.paper}>
-          <Grid container spacing={2}>
-
-            <form>
-          <Grid item>
-            <textarea name="content" defaultValue={note.content} onChange={setNote} rows='7' cols='50' className={classes.text} placeholder='Please write a note about how you are feeling, what you wish to discuss with your specialist, or anything on your mind.'></textarea>
-          </Grid>
-          <Grid item xs={12} sm container>
-          </Grid>
-          <Button type='submit' onClick={submitNote} className={classes.notebtn} onClick={submitNote}>Save Note</Button>
-          </form>
-          </Grid>
-          </Paper>
-          <div className={classes.page_padding}><div className='page-container'>
-            <Grid item id='notes'></Grid>
-      </div></div>
-          </div>
+          
       </div>
   )
 }

@@ -185,15 +185,15 @@ return(
             <ListItemText primary={text} />
           </ListItem>
         ))}
-        {/* {['My Notes'].map((text, index) => (
+        {['My Notes'].map((text, index) => (
           <ListItem 
           button key={text}
-          component={Link} to='/my-notes'
+          component={Link} to='/notes'
           >
             <ListItemIcon><EventNoteIcon style={{color:'#375C23'}}/></ListItemIcon>
             <ListItemText primary={text} />
           </ListItem>
-        ))} */}
+        ))}
        {['Favorites'].map((text, index) => (
           <ListItem 
           button key={text}

@@ -16,9 +16,9 @@ function AuthenticatedApp() {
     <Router>
       <SideDrawer></SideDrawer>
       <Switch>
-        {/* <Route path='/my-notes'>
+        <Route path='/notes'>
           <Notes />
-        </Route> */}
+        </Route>
        <Route path='/saved'>
           <SavedUsers />
         </Route>
