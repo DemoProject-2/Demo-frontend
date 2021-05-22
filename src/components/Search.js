@@ -5,6 +5,7 @@ import {
   Button,
 } from "@material-ui/core";
 import axios from 'axios';
+import { http } from '../lib/http';
 import "./Search.css"
 import React from "react";
 import SideDrawer from "./AuthenticatedSideDrawer.js"
@@ -129,7 +130,7 @@ export default function Search() {
     if (accountType === "patient") {
       if (medicalIssue && !userName) {
         console.log('searching for specialist treating', medicalIssue)
-        axios.get(`https://mental-health-database.herokuapp.com/users/all-specialist/specialist`)  //get specialist by medical issue  DONE AND WORKING
+        http.get(`/users/all-specialist/specialist`)  //get specialist by medical issue  DONE AND WORKING
           .then(res => {
             const users = res.data
             let specialists = []
@@ -149,7 +150,7 @@ export default function Search() {
       }
       if (userName && !medicalIssue) {
         console.log('searching for', userName)
-        axios.get(`https://mental-health-database.herokuapp.com/users/username/${userName}`)  //get specialist by username DONE AND WORKING
+        http.get(`/users/username/${userName}`)  //get specialist by username DONE AND WORKING
           .then(res => {
             const users = res.data
             let specialists = []
@@ -169,7 +170,7 @@ export default function Search() {
           })
       }
       if (medicalIssue && userName) {
-        axios.get(`https://mental-health-database.herokuapp.com/users/all-specialist/specialist`)  //get specialist by medical issue and username needs to edit
+        http.get(`/users/all-specialist/specialist`)  //get specialist by medical issue and username needs to edit
           .then(res => {
             console.log('searching for specialist by all filters')
             const users = res.data
@@ -190,7 +191,7 @@ export default function Search() {
       }
       if (!medicalIssue.length && !userName) {
         console.log(medicalIssue)
-        axios.get(`https://mental-health-database.herokuapp.com/users/all-specialist/specialist`)  //get all specialist DONE AND WORKING
+        http.get(`/users/all-specialist/specialist`)  //get all specialist DONE AND WORKING
           .then(res => {
             const users = res.data
             console.log(users)
@@ -208,7 +209,7 @@ export default function Search() {
       console.log('searching for patient')
       if (medicalIssue && !userName) {
         console.log('searching for patient by medical issue')
-        axios.get(`https://mental-health-database.herokuapp.com/users/specialty-users/${medicalIssue}`)  //get patients by medical issue DONE AND WORKING
+        http.get(`/users/specialty-users/${medicalIssue}`)  //get patients by medical issue DONE AND WORKING
           .then(res => {
             const users = res.data
             const patients = []
@@ -228,7 +229,7 @@ export default function Search() {
       }
       if (!medicalIssue && userName) {
         console.log('searching for patient by username')
-        axios.get(`https://mental-health-database.herokuapp.com/users/username/${userName}`)  //get patients by username DONE AND WORKING
+        http.get(`/users/username/${userName}`)  //get patients by username DONE AND WORKING
           .then(res => {
             const users = res.data
             const usersList = users.map((search) => <div><div><b>{search.user_name}</b><p>Relevant Health Concern: {search.medical_issue}</p></div><div><Button onClick={addFavorite} className={classes.btnFormat}>Add to Favorites</Button><Button onClick={chat} className={classes.btnFormat}>Message</Button></div></div>)
@@ -241,7 +242,7 @@ export default function Search() {
           })
       }
       if (medicalIssue && userName) {
-        axios.get(`https://mental-health-database.herokuapp.com/users/username/${userName}`)  //get patients by medical issue and username
+        http.get(`/users/username/${userName}`)  //get patients by medical issue and username
           .then(res => {
             const users = res.data
             const patients = []
@@ -261,7 +262,7 @@ export default function Search() {
       }
       if (!medicalIssue && !userName) {
         console.log('searching for all patients no filter selected')
-        axios.get(`https://mental-health-database.herokuapp.com/users/all-patients/patient`)  //get all patients DONE AND WORKING
+        http.get(`/users/all-patients/patient`)  //get all patients DONE AND WORKING
           .then(res => {
             const users = res.data
             const usersList = users.map((search) => <div><div><b>{search.user_name}</b><p>Relevant Health Concern: {search.medical_issue}</p></div><div><Button onClick={addFavorite} className={classes.btnFormat}>Add to Favorites</Button><Button onClick={chat} className={classes.btnFormat}>Message</Button></div></div>)

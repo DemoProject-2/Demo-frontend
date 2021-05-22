@@ -3,6 +3,7 @@ import "./Home.css"
 import SideDrawer from "./AuthenticatedSideDrawer.js"
 import { AuthContext } from '../context/auth-context'
 import React from "react";
+import AuthenticatedSideDrawer from "./AuthenticatedSideDrawer.js";
 // import { useFormFields } from "../lib/customHooks";
 
 const useStyles = makeStyles((theme) => ({
@@ -115,7 +116,7 @@ export default function AccountProfile() {
 
   return (
     <div>
-      <SideDrawer />
+      <AuthenticatedSideDrawer />
       <img className={classes.userIcon} alt="user icon" src="/assets/userIcon.jpg" />
       <h1 className={classes.welcome}>{user.user_name}'s Page</h1><br />
       <h3 className={classes.userInfo}>Related Mental Health concern: {user.medical_issue}</h3>

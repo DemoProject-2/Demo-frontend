@@ -162,7 +162,7 @@ export default function UnauthenticatedSideDrawer() {
             {['Sign In'].map((text, index) => (
               <ListItem
                 button key={text}
-                component={Link} to='/sign-in'
+                component={Link} to='/login'
               >
                 <ListItemIcon><ExitToAppRoundedIcon style={{ color: '#375C23' }} /></ListItemIcon>
                 <ListItemText primary={text} />

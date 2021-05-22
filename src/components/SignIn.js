@@ -140,7 +140,7 @@ export default function SignIn() {
                 size="small"
                 onClick={handleSubmit}
               >
-                Sign In
+                Login
           </Button>
             </div>
             <Typography

@@ -14,6 +14,7 @@ import {
 } from "@material-ui/core";
 import UnauthenticatedSideDrawer from '../components/UnauthenticatedSideDrawer';
 import { AuthContext } from '../context/auth-context'
+import { http } from '../lib/http';
 
 import axios from "axios";
 
@@ -99,7 +100,7 @@ export default function Register({ setLoggedIn, loggedIn }) {
       alert('Fields Invalid Please Correct Issue and Try Again')
     }
     else {
-      axios.post('https://mental-health-database.herokuapp.com/users/register', { //here add link from route to register a user
+      http.post('/register', { //here add link from route to register a user
         first_name: firstName,
         last_name: lastName,
         user_name: userName,
@@ -245,17 +246,17 @@ export default function Register({ setLoggedIn, loggedIn }) {
                 className={classes.signUp}
                 variant="contained"
                 size="small"
-                component={Link} to="/sign-in"
+                component={Link} to="/login"
                 onClick={handleSubmit}
               >
-                Sign In
+                Login
           </Button>
               <Typography
                 justify="center"
                 alignItems="center"
                 alignContent="center"
                 variant="subtitle2">
-                <a href="/sign-in">Have an account? Sign In</a>
+                <a href="/login">Have an account? Login</a>
               </Typography>
             </form>
           </Paper>
