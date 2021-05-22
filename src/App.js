@@ -8,31 +8,29 @@ import Chat from "./components/Chat.js"
 import { BrowserRouter as Router, Switch, Route, } from "react-router-dom";
 import Notes from "./components/Notes.js";
 import { AuthContext } from './context/auth-context'
-import SideDrawer from './components/SideDrawer.js'
-import SideDrawer2 from './components/SideDrawer2.js'
+import AuthenticatedSideDrawer from './components/AuthenticatedSideDrawer.js'
+import UnauthenticatedSideDrawer from './components/UnauthenticatedSideDrawer'
 import SavedUsers from './components/SavedUsers'
+
 function AuthenticatedApp() {
   return (
     <Router>
-      <SideDrawer></SideDrawer>
+      <AuthenticatedSideDrawer></AuthenticatedSideDrawer>
       <Switch>
         <Route path='/notes'>
           <Notes />
         </Route>
-       <Route path='/saved'>
+        <Route path='/saved'>
           <SavedUsers />
         </Route>
-        <Route path ="/search">
+        <Route path="/search">
           <Search />
-        </Route>
-        <Route path="/my-account">
-          <AccountProfile />
         </Route>
         <Route path="/chat">
           <Chat />
         </Route>
         <Route path="/">
-          <Home />
+          <AccountProfile />
         </Route>
       </Switch>
     </Router>
@@ -42,12 +40,12 @@ function AuthenticatedApp() {
 function UnauthenticatedApp() {
   return (
     <Router>
-      <SideDrawer2></SideDrawer2>
+      <UnauthenticatedSideDrawer></UnauthenticatedSideDrawer>
       <Switch>
         <Route path='/register'>
           <Register />
         </Route>
-        <Route path="/sign-in">
+        <Route path="/login">
           <SignIn />
         </Route>
         <Route path="/">
@@ -59,8 +57,8 @@ function UnauthenticatedApp() {
 }
 
 export default function App() {
-  const { user, token } = React.useContext(AuthContext)
-  
+  const { user } = React.useContext(AuthContext)
+
   return (
     <div>
       {user ? <AuthenticatedApp /> : <UnauthenticatedApp />}

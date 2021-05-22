@@ -1,9 +1,5 @@
 import React from "react";
-//import Form from 'react-bootstrap/Form';
-// import axios from 'axios';
-// import "bootstrap/dist/css/bootstrap.min.css";
-// import { register } from "../services/auth";
-import { BrowserRouter as Router, Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useFormFields } from "../lib/customHooks";
 import {
@@ -16,7 +12,7 @@ import {
   Collapse,
   Container,
 } from "@material-ui/core";
-import SideDrawer2 from "./SideDrawer2.js"
+import UnauthenticatedSideDrawer from '../components/UnauthenticatedSideDrawer';
 import { AuthContext } from '../context/auth-context'
 
 import axios from "axios";
@@ -44,20 +40,20 @@ const useStyles = makeStyles((theme) => ({
     height: "auto",
     borderWidth: "0",
     borderRadius: "20px",
-    left:230,
+    left: 230,
     top: 30,
     marginBottom: 50,
   },
   justify: {
-    color:  "#375C23",
-    paddingLeft:"13vw",
+    color: "#375C23",
+    paddingLeft: "13vw",
     paddingTop: "2vw"
   },
   img: {
     margin: 'auto',
     display: 'block',
     maxHeight: '50%',
-    maxWidth: '50%', 
+    maxWidth: '50%',
     paddingTop: '3vw',
   }
 }));
@@ -76,68 +72,68 @@ export default function Register({ setLoggedIn, loggedIn }) {
     account_type: "",
   });
 
-//   const handleRegister = (event) => {
-//     event.preventDefault();
-//     register(business);
-//     history.push("/profile/home");
-//     setLoggedIn(true);
-//   };
+  //   const handleRegister = (event) => {
+  //     event.preventDefault();
+  //     register(business);
+  //     history.push("/profile/home");
+  //     setLoggedIn(true);
+  //   };
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(user)
-  let firstName=user.first_name
+    let firstName = user.first_name
 
-  let lastName=user.last_name
+    let lastName = user.last_name
 
-  let userName=user.user_name
+    let userName = user.user_name
 
-  let passWord=user.password
+    let passWord = user.password
 
-  let eMail=user.email
- 
-  let medicalIssue=user.medical_issue
+    let eMail = user.email
 
-  let accountType=user.account_type
-  if(!firstName||!lastName||!userName||!passWord||!eMail||!medicalIssue){
-    console.log("Field not valid")
-    alert('Fields Invalid Please Correct Issue and Try Again')
+    let medicalIssue = user.medical_issue
+
+    let accountType = user.account_type
+    if (!firstName || !lastName || !userName || !passWord || !eMail || !medicalIssue) {
+      console.log("Field not valid")
+      alert('Fields Invalid Please Correct Issue and Try Again')
+    }
+    else {
+      axios.post('https://mental-health-database.herokuapp.com/users/register', { //here add link from route to register a user
+        first_name: firstName,
+        last_name: lastName,
+        user_name: userName,
+        email: eMail,
+        password: passWord,
+        medical_issue: medicalIssue,
+        account_type: accountType
+      })
+        .then(function (res) {
+          console.log(res)
+        })
+        .catch(function (err) {
+          console.log(err)
+        })
+
+      try {
+        // const { data } = await axios.post('http://localhost:3030/users/register', {
+        //   first_name: "erwins",
+        //   last_name: "saget",
+        //   user_name: "erwezy",
+        //   email: "erwins1223@gmail.com",
+        //   password: "password",
+        //   medical_issue: "neurosis",
+        //   account_type: "patient"
+        //   })
+
+        _setToken('aklsdjflaksjflasf')
+        _setUser({ id: 1, first_name: firstName, last_name: lastName, user_name: userName, email: eMail, password: passWord, medical_issue: medicalIssue, account_type: accountType })
+      } catch (err) {
+        console.log('err', err.message)
+      }
+    }
   }
-  else{
-    axios.post('https://mental-health-database.herokuapp.com/users/register',{ //here add link from route to register a user
-    first_name:firstName,
-    last_name:lastName,
-    user_name:userName,
-    email:eMail,
-    password:passWord,
-    medical_issue:medicalIssue,
-    account_type:accountType
-  })
-  .then(function(res){
-    console.log(res)
-  })
-  .catch(function(err){
-    console.log(err)
-  })
 
-  try {
-  // const { data } = await axios.post('http://localhost:3030/users/register', {
-  //   first_name: "erwins",
-  //   last_name: "saget",
-  //   user_name: "erwezy",
-  //   email: "erwins1223@gmail.com",
-  //   password: "password",
-  //   medical_issue: "neurosis",
-  //   account_type: "patient"
-  //   })
-
-  _setToken('aklsdjflaksjflasf')
-  _setUser({ id: 1, first_name: firstName,last_name:lastName, user_name:userName, email:eMail, password: passWord, medical_issue: medicalIssue, account_type:accountType})
-  } catch (err) {
-    console.log('err', err.message)
-  }
-}
-}
-  
 
   useEffect(() => {
     setChecked(true);
@@ -145,11 +141,11 @@ export default function Register({ setLoggedIn, loggedIn }) {
 
   return (
     <div>
-      <SideDrawer2 />
+      <UnauthenticatedSideDrawer />
       <Container className={classes.container}>
         <Collapse in={checked} {...(checked ? { timeout: 1000 } : {})}>
           <Paper elevation={20} className={classes.paper}>
-          <img className={classes.img} alt="complex" src="/assets/logo.png" />
+            <img className={classes.img} alt="complex" src="/assets/logo.png" />
             <Grid
               container
               spacing={1}
@@ -166,18 +162,18 @@ export default function Register({ setLoggedIn, loggedIn }) {
               />
             </Grid>
             <form autoComplete="off" onSubmit={handleSubmit}>
-            <p className={classes.justify}><input 
-                type="radio" 
-                value="specialist" 
-                onClick={setUser} 
+              <p className={classes.justify}><input
+                type="radio"
+                value="specialist"
+                onClick={setUser}
                 name="account_type" />
                 <t>Specialist</t>
-              <input 
-                type="radio" 
-                value="patient" 
-                onClick={setUser} 
-                name="account_type" />
-                <t>Looking for a Specialist</t><br/></p>
+                <input
+                  type="radio"
+                  value="patient"
+                  onClick={setUser}
+                  name="account_type" />
+                <t>Looking for a Specialist</t><br /></p>
               <Grid container justify="space-around" spacing={1}>
                 <Grid item>
                   <TextField
@@ -244,22 +240,22 @@ export default function Register({ setLoggedIn, loggedIn }) {
                 </Grid>
               </Grid>
 
-            <Button
-            type="submit"
-            className={classes.signUp}
-            variant="contained"
-            size="small"
-            component = {Link} to = "/sign-in"
-            onClick={handleSubmit}
-          >
-            Sign In
+              <Button
+                type="submit"
+                className={classes.signUp}
+                variant="contained"
+                size="small"
+                component={Link} to="/sign-in"
+                onClick={handleSubmit}
+              >
+                Sign In
           </Button>
-              <Typography 
-              justify="center"
-              alignItems="center"
-              alignContent="center"
-              variant="subtitle2">
-              <a href="/sign-in">Have an account? Sign In</a>
+              <Typography
+                justify="center"
+                alignItems="center"
+                alignContent="center"
+                variant="subtitle2">
+                <a href="/sign-in">Have an account? Sign In</a>
               </Typography>
             </form>
           </Paper>

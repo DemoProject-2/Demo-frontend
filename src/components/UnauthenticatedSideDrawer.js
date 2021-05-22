@@ -6,7 +6,7 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded';
 import PostAddRoundedIcon from '@material-ui/icons/PostAddRounded';
-import { BrowserRouter as Router, Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import DehazeSharpIcon from '@material-ui/icons/DehazeSharp';
 import {
   List,
@@ -86,11 +86,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SideDrawer2() {
+export default function UnauthenticatedSideDrawer() {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-  
+
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -99,89 +99,87 @@ export default function SideDrawer2() {
     setOpen(false);
   };
 
-return(
-  <div className={classes.root}>
-    <CssBaseline />
-    <AppBar
-      position="fixed"
-      style={{background:"#C2F0AA"}}
-      className={clsx(classes.appBar, {
-        [classes.appBarShift]: open,
-      })}
-    >
-    <Toolbar>
-        <Typography variant="h6" noWrap className={classes.title} >
-        </Typography>
-        <IconButton
-          aria-label="open drawer"
-          edge="end"
-          onClick={handleDrawerOpen}
-          className={clsx(open && classes.hide)}
-        >
-          <DehazeSharpIcon />
-        </IconButton>
-      </Toolbar>
+  return (
+    <div className={classes.root}>
+      <CssBaseline />
+      <AppBar
+        position="fixed"
+        style={{ background: "#C2F0AA" }}
+        className={clsx(classes.appBar, {
+          [classes.appBarShift]: open,
+        })}
+      >
+        <Toolbar>
+          <Typography variant="h6" noWrap className={classes.title} >
+          </Typography>
+          <IconButton
+            aria-label="open drawer"
+            edge="end"
+            onClick={handleDrawerOpen}
+            className={clsx(open && classes.hide)}
+          >
+            <DehazeSharpIcon />
+          </IconButton>
+        </Toolbar>
       </AppBar>
       <main
-      className={clsx(classes.content, {
-        [classes.contentShift]: open,
-      })}
-    >
-      <div className={classes.drawerHeader} />
-      {/* <Typography paragraph>
+        className={clsx(classes.content, {
+          [classes.contentShift]: open,
+        })}
+      >
+        <div className={classes.drawerHeader} />
+        {/* <Typography paragraph>
       Possible name : Mentality.com
       </Typography> */}
-    </main>
-    <Drawer
-      className={classes.drawer}
-      variant="persistent"
-      anchor="right"
-      open={open}
-      classes={{
-        paper: classes.drawerPaper,
-      }}
-    >
-      <div className={classes.drawerHeader}>
-        <IconButton onClick={handleDrawerClose}>
-          {theme.direction === 'rtl' ? <ChevronLeftIcon style={{color:'#375C23'}}/> : <ChevronRightIcon style={{color:'#375C23'}}/>}
-        </IconButton>
-      </div>
-      <Divider />
-      <TypographyStyle>
-      {['Home'].map((text, index) => (
-          <ListItem 
-          button key={text}
-          component={Link} to='/'
-          >
-            <ListItemIcon><PersonOutlineIcon style={{color:'#375C23'}}/></ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      <Divider />
-      <List>
-      {['Sign In'].map((text, index) => (
-          <ListItem 
-          button key={text}
-          component={Link} to='/sign-in'
-          >
-            <ListItemIcon><ExitToAppRoundedIcon style={{color:'#375C23'}}/></ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      {['Register'].map((text, index) => (
-          <ListItem 
-          button key={text}
-          component={Link} to='/register'
-          >
-            <ListItemIcon><PostAddRoundedIcon style={{color:'#375C23'}}/></ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-      </TypographyStyle>
-
+      </main>
+      <Drawer
+        className={classes.drawer}
+        variant="persistent"
+        anchor="right"
+        open={open}
+        classes={{
+          paper: classes.drawerPaper,
+        }}
+      >
+        <div className={classes.drawerHeader}>
+          <IconButton onClick={handleDrawerClose}>
+            {theme.direction === 'rtl' ? <ChevronLeftIcon style={{ color: '#375C23' }} /> : <ChevronRightIcon style={{ color: '#375C23' }} />}
+          </IconButton>
+        </div>
+        <Divider />
+        <TypographyStyle>
+          {['Home'].map((text, index) => (
+            <ListItem
+              button key={text}
+              component={Link} to='/'
+            >
+              <ListItemIcon><PersonOutlineIcon style={{ color: '#375C23' }} /></ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItem>
+          ))}
+          <Divider />
+          <List>
+            {['Sign In'].map((text, index) => (
+              <ListItem
+                button key={text}
+                component={Link} to='/sign-in'
+              >
+                <ListItemIcon><ExitToAppRoundedIcon style={{ color: '#375C23' }} /></ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItem>
+            ))}
+            {['Register'].map((text, index) => (
+              <ListItem
+                button key={text}
+                component={Link} to='/register'
+              >
+                <ListItemIcon><PostAddRoundedIcon style={{ color: '#375C23' }} /></ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItem>
+            ))}
+          </List>
+        </TypographyStyle>
       </Drawer>
-
     </div>
   );
 }

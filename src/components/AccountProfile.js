@@ -1,16 +1,9 @@
 import { makeStyles, Button } from "@material-ui/core";
 import "./Home.css"
-import SideDrawer from "./SideDrawer.js"
-import {
-  Grid,
-  Card,
-} from "@material-ui/core";
-import Paper from '@material-ui/core/Paper';
-import axios from "axios";
-import ReactDOM from 'react-dom';
+import SideDrawer from "./AuthenticatedSideDrawer.js"
 import { AuthContext } from '../context/auth-context'
 import React from "react";
-import { useFormFields } from "../lib/customHooks";
+// import { useFormFields } from "../lib/customHooks";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,19 +24,19 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: '180%',
   },
   welcome: {
-    paddingLeft:'10%',
-    margin:'11% 1%'
+    paddingLeft: '10%',
+    margin: '11% 1%'
   },
-  userInfo: { 
-    paddingLeft:'10%',
-    margin:'-11% 1%'
+  userInfo: {
+    paddingLeft: '10%',
+    margin: '-11% 1%'
   },
   userIcon: {
-    paddingLeft:'10%',
-    margin:'-9% 1%'
+    paddingLeft: '10%',
+    margin: '-9% 1%'
   },
   EditAccountInfodiv: {
-    paddingLeft:'30vw',
+    paddingLeft: '30vw',
     margin: '-25% 1%'
   },
   editbtn: {
@@ -63,28 +56,28 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "20px",
     top: 20,
     marginBottom: 50,
-    left:'46vw',
+    left: '46vw',
   },
-  root: {
-    flexGrow: 1,
-  },
-  paper: {
-    margin: '1vw',
-    maxWidth: 580,
-    paddingTop:'3vw',
-    paddingBottom:'2vw',
-    paddingLeft:'9vw'
-  },
-  image: {
-    width: 328,
-    height: 328,
-  },
-  img: {
-    margin: 'auto',
-    display: 'block',
-    maxHeight: '110%',
-    maxWidth: '180%',
-  },
+  // root: {
+  //   flexGrow: 1,
+  // },
+  // paper: {
+  //   margin: '1vw',
+  //   maxWidth: 580,
+  //   paddingTop: '3vw',
+  //   paddingBottom: '2vw',
+  //   paddingLeft: '9vw'
+  // },
+  // image: {
+  //   width: 328,
+  //   height: 328,
+  // },
+  // img: {
+  //   margin: 'auto',
+  //   display: 'block',
+  //   maxHeight: '110%',
+  //   maxWidth: '180%',
+  // },
   notebtn: {
     "&:hover": {
       borderColor: "#375C23",
@@ -100,36 +93,35 @@ const useStyles = makeStyles((theme) => ({
     height: "auto",
     borderWidth: "0",
     borderRadius: "20px",
-    left:'10vw',
+    left: '10vw',
     top: 30,
     marginBottom: 50,
   },
   note_container: {
-    margin:'50vw 40px'
+    margin: '50vw 40px'
   },
   page_padding: {
-    paddingTop:'3vw'
+    paddingTop: '3vw'
   }
 }));
 
-let notes=[]
-export default function AccountProfile(){
-  const { user, token } = React.useContext(AuthContext)
+export default function AccountProfile() {
+  const { user } = React.useContext(AuthContext)
   const classes = useStyles();
   console.log(user)
-  const [note, setNote] = useFormFields({
-    content:""
-})
+  // const [note, setNote] = useFormFields({
+  //   content: ""
+  // })
 
- return(
+  return (
     <div>
-    <SideDrawer />
-            <img className={classes.userIcon}src= "/assets/userIcon.jpg"/>
-            <h1 className={classes.welcome}>{user.user_name}'s Page</h1><br />
-            <h3 className={classes.userInfo}>Related Mental Health concern: {user.medical_issue}</h3>
-            <div className={classes.EditAccountInfodiv}><Button className={classes.editbtn}>Edit Account Info</Button></div>
-          
-      </div>
+      <SideDrawer />
+      <img className={classes.userIcon} alt="user icon" src="/assets/userIcon.jpg" />
+      <h1 className={classes.welcome}>{user.user_name}'s Page</h1><br />
+      <h3 className={classes.userInfo}>Related Mental Health concern: {user.medical_issue}</h3>
+      <div className={classes.EditAccountInfodiv}><Button className={classes.editbtn}>Edit Account Info</Button></div>
+
+    </div>
   )
 }
 
