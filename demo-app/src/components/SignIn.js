@@ -13,6 +13,7 @@ import {
 } from "@material-ui/core";
 import { useFormFields} from "../lib/customHooks";
 import axios from 'axios';
+import { AuthContext } from '../context/auth-context'
 
 const useStyles = makeStyles((theme) => ({
   searchfield: {
@@ -91,7 +92,10 @@ passWord=passWord.replace(/['"]+/g, '')
 console.log(passWord)
 
 if(userName&&passWord){//add link to find user with username and password
-  axios.get('https://localhost:3030/users/sign-in')
+  axios.post('http://localhost:3000/users/sign-in',{
+    user_name:userName,
+    password:passWord
+  })
     .then(function(res){
       console.log(res)
       //redirect to home page

@@ -9,7 +9,7 @@ import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded';
 import { BrowserRouter as Router, Link } from "react-router-dom";
 import DehazeSharpIcon from '@material-ui/icons/DehazeSharp';
-import { AuthContext } from '../context/auth-context'
+import { AuthContext, AuthProvider } from '../context/auth-context'
 import PeopleOutlineIcon from '@material-ui/icons/PersonOutline';
 
 
@@ -112,8 +112,10 @@ export default function SideDrawer() {
   };
 
   const logOut = () => {
-    // _setToken(null)
-    // _setUser({ id: null, first_name: ''})
+    // // _setToken(null)
+    // // _setUser({ id: null, first_name: ''})
+    // AuthProvider._setToken(null)
+    // AuthProvider._setUser(null)
     console.log(user)
 
 
