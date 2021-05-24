@@ -8,6 +8,8 @@ import {
 } from "@material-ui/core";
 import { http } from '../lib/http';
 import UnauthenticatedSideDrawer from './UnauthenticatedSideDrawer'
+import { AuthProvider } from '../context/auth-context';
+// import AuthProvider from '../context/auth-context'
 
 const useStyles = makeStyles((theme) => ({
   searchfield: {
@@ -76,14 +78,21 @@ export default function SignIn() {
 
   const handleSubmit = e => {
     e.preventDefault()
-
     http.post('/login', {
       user_name: username,
       password
     })
       .then(function (res) {
+        let login=res.data
+        if(login.length>0){
+          
+          window.location.replace('/')
+          AuthProvider()._setToken(res.data.token)
+          AuthProvider()._setUser(res.data.user_name)
+                  //redirect to home page
+          
+        }
         console.log(res)
-        //redirect to home page
       })
       .catch(function (err) {
         setErrorMessage(err?.response?.data?.message)
