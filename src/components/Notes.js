@@ -4,7 +4,8 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import { Button } from "@material-ui/core";
 import { useFormFields } from "../lib/customHooks";
-import ReactDOM from 'react-dom'
+import React from "react";
+import { http } from "../lib/http";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -60,14 +61,34 @@ export default function Notes() {
   const [note, setNote] = useFormFields({
     content: ""
   })
+  const [notes, setNotes] = React.useState(null)
 
-  const submitNote = e => {
+  // fetch the user's notes
+  React.useEffect(() => {
+    const fetchNotes = async () => {
+      try {
+        const { data } = await http.get('/notes')
+        setNotes(data.notes)
+      } catch (err) {
+        console.log(err)
+      }
+    }
+
+    fetchNotes()
+  }, [])
+
+  const submitNote = async e => {
     e.preventDefault()
-    let noted = JSON.stringify(note.content)
-    noted = noted.replace(/['"]+/g, '')
-    ReactDOM.render(
-      <div style={{ whiteSpace: "pre-wrap" }}>{noted}</div>, document.getElementById('notes')
-    )
+
+    try {
+      const { data } = await http.post('/notes', {
+        content: note.content
+      })
+
+     setNotes([...notes, data.note])
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   return (
@@ -78,7 +99,7 @@ export default function Notes() {
 
             <form>
               <Grid item>
-                <textarea name="content" defaultValue={note.content} onChange={setNote} rows='7' cols='50' className={classes.text} placeholder='Please write a note about how you are feeling, what you wish to discuss with your specialist, or anything on your mind.'></textarea>
+                <textarea name="content" value={note.content} onChange={setNote} rows='7' cols='50' className={classes.text} placeholder='Please write a note about how you are feeling, what you wish to discuss with your specialist, or anything on your mind.'></textarea>
               </Grid>
               <Grid item xs={12} sm container>
               </Grid>
@@ -87,8 +108,11 @@ export default function Notes() {
           </Grid>
         </Paper>
         <div className={classes.page_padding}><div className='page-container'>
-          <Grid item id='notes'></Grid>
-        </div></div>
+          <Grid item id='notes'>
+            {Array.isArray(notes) && notes.map(n => <div key={n.id}>{n.content}</div>)}
+          </Grid>
+        </div>
+        </div>
       </div>
     </div>
   )

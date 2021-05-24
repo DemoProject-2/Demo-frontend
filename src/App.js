@@ -5,7 +5,7 @@ import AccountProfile from "./components/AccountProfile.js"
 import Register from "./components/Register.js"
 import Search from "./components/Search.js"
 import Chat from "./components/Chat.js"
-import { BrowserRouter as Router, Switch, Route, } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Redirect, } from "react-router-dom";
 import Notes from "./components/Notes.js";
 import { AuthContext } from './context/auth-context'
 import AuthenticatedSideDrawer from './components/AuthenticatedSideDrawer.js'
@@ -31,6 +31,9 @@ function AuthenticatedApp() {
         </Route>
         <Route path="/">
           <AccountProfile />
+        </Route>
+        <Route path={["/login", "/register"]}>
+          <Redirect to="/" />
         </Route>
       </Switch>
     </Router>

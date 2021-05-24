@@ -1,6 +1,6 @@
 import { makeStyles, Button } from "@material-ui/core";
 import "./Home.css"
-import SideDrawer from "./AuthenticatedSideDrawer.js"
+// import SideDrawer from "./AuthenticatedSideDrawer.js"
 import { AuthContext } from '../context/auth-context'
 import React from "react";
 import AuthenticatedSideDrawer from "./AuthenticatedSideDrawer.js";
@@ -109,7 +109,6 @@ const useStyles = makeStyles((theme) => ({
 export default function AccountProfile() {
   const { user } = React.useContext(AuthContext)
   const classes = useStyles();
-  console.log(user)
   // const [note, setNote] = useFormFields({
   //   content: ""
   // })

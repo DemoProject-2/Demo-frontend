@@ -9,7 +9,7 @@ import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded';
 import { Link } from "react-router-dom";
 import DehazeSharpIcon from '@material-ui/icons/DehazeSharp';
-import { AuthContext } from '../context/auth-context'
+import { useAuthContext } from '../context/auth-context'
 import PeopleOutlineIcon from '@material-ui/icons/PersonOutline';
 
 
@@ -95,7 +95,7 @@ export default function AuthenticatedSideDrawer() {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-  const { _setUser } = React.useContext(AuthContext)
+  const { setUser, user } = useAuthContext()
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -106,7 +106,7 @@ export default function AuthenticatedSideDrawer() {
   };
 
   const logOut = () => {
-    _setUser(null)
+    setUser(null)
   }
 
   return (
@@ -185,24 +185,50 @@ export default function AuthenticatedSideDrawer() {
               <ListItemText primary={text} />
             </ListItem>
           ))}
-          {['Favorites'].map((text, index) => (
-            <ListItem
-              button key={text}
-              component={Link} to="/saved"
-            >
-              <ListItemIcon><PeopleOutlineIcon style={{ color: '#375C23' }} /></ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-          {['Find User'].map((text, index) => (
-            <ListItem
-              button key={text}
-              component={Link} to='/search'
-            >
-              <ListItemIcon><FindInPageRoundedIcon style={{ color: '#375C23' }} /></ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
+          {user.account_type === 'patient' && (
+            ['My Specialists'].map((text, index) => (
+              <ListItem
+                button key={text}
+                component={Link} to="/saved"
+              >
+                <ListItemIcon><PeopleOutlineIcon style={{ color: '#375C23' }} /></ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItem>
+            ))
+          )}
+          {user.account_type === 'specialist' && (
+            ['My Patients'].map((text, index) => (
+              <ListItem
+                button key={text}
+                component={Link} to="/saved"
+              >
+                <ListItemIcon><PeopleOutlineIcon style={{ color: '#375C23' }} /></ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItem>
+            ))
+          )}
+          {user.account_type === 'patient' && (
+            ['Find Specialist'].map((text, index) => (
+              <ListItem
+                button key={text}
+                component={Link} to='/search'
+              >
+                <ListItemIcon><FindInPageRoundedIcon style={{ color: '#375C23' }} /></ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItem>
+            ))
+          )}
+          {user.account_type === 'specialist' && (
+            ['Find Patient'].map((text, index) => (
+              <ListItem
+                button key={text}
+                component={Link} to='/search'
+              >
+                <ListItemIcon><FindInPageRoundedIcon style={{ color: '#375C23' }} /></ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItem>
+            ))
+          )}
           {['Chat'].map((text, index) => (
             <ListItem
               button key={text}

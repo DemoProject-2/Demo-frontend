@@ -2,8 +2,9 @@ import { makeStyles } from "@material-ui/core";
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import SideDrawer from "./AuthenticatedSideDrawer.js"
-import axios from 'axios';
-import ReactDOM from 'react-dom';
+import { http } from '../lib/http';
+import { useAuthContext } from '../context/auth-context'
+import React from "react";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,26 +22,35 @@ const useStyles = makeStyles((theme) => ({
 
 
 export default function SavedUsers() {
+  const { user } = useAuthContext();
+
   const classes = useStyles();
-  axios.get(``)
-    .then(res => {
-      const users = res.data
-      const usersList = users.map((search) => <div><b>{search.user_name}</b>{search.medical_issue}</div>)
-      if (users.length > 0) {
-        ReactDOM.render(<div>{usersList}</div>, document.getElementById('saved'))
-      }
-      else {
-        ReactDOM.render(<h1>Match Could Not Be Found</h1>, document.getElementById('saved'))
-      }
-    })
+  const [users, setUsers] = React.useState(null)
+
+  React.useEffect(() => {
+    const fetchUsers = () => {
+      http.get(`/connections/${user.id}`)
+      .then(res => {
+        setUsers(res.data)
+      }).catch((err) => {
+        console.log('failed to fetch users', err.toJSON())
+      })
+    }
+
+    fetchUsers();
+  }, [])
+
+
   return (
     <div>
       <SideDrawer />
-      <h1 className={classes.title}>Saved Users</h1>
+      <h1 className={classes.title}>My {user.accountType === 'patient' ? 'Specialists' : 'Patients' }</h1>
       <Paper className={classes.paper}>
         <Grid container spacing={2}>
           <Grid item>
             <Grid Item id='saved'>
+              {Array.isArray(users) && users.length === 0 && <p>Nothing to see here!</p>}
+              {Array.isArray(users) && users.length > 0 && users.map((search) => <div><b>{search.user_name}</b>{search.medical_issue}</div>)}
             </Grid>
           </Grid>
           <Grid item xs={12} sm container>
