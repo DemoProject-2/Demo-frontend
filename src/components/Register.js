@@ -45,8 +45,7 @@ const useStyles = makeStyles((theme) => ({
   },
   justify: {
     color: "#375C23",
-    paddingLeft: "13vw",
-    paddingTop: "2vw"
+    paddingTop: "2vw%"
   },
   img: {
     margin: 'auto',
