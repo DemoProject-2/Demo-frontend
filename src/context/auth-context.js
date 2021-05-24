@@ -7,25 +7,23 @@ const AuthContext = React.createContext({
 
 const AuthProvider = (props) => {
     const [user, setUser] = React.useState(null);
-    const [token, setToken] = React.useState(null);
-
-    function _setToken(jwtToken) {
-        setToken(jwtToken)
-    }
-
-    function _setUser(userData) {
-        setUser(userData)
-    }
 
     return (
-        <AuthContext.Provider value={{user, token, _setToken, _setUser}}>
+        <AuthContext.Provider value={{user, setUser}}>
             {props.children}
         </AuthContext.Provider>
     )
 }
 
+const useAuthContext = () => {
+    const context = React.useContext(AuthContext)
+
+    return context;
+}
+
 export {
     AuthContext,
-    AuthProvider
+    AuthProvider,
+    useAuthContext
 }
   

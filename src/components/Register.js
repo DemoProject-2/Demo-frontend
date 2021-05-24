@@ -16,8 +16,6 @@ import UnauthenticatedSideDrawer from '../components/UnauthenticatedSideDrawer';
 import { AuthContext } from '../context/auth-context'
 import { http } from '../lib/http';
 
-import axios from "axios";
-
 const useStyles = makeStyles((theme) => ({
   paper: {
     padding: "20px",
@@ -60,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Register({ setLoggedIn, loggedIn }) {
-  const { _setToken, _setUser } = React.useContext(AuthContext)
+  const { setUser: setAuthUser } = React.useContext(AuthContext)
   const classes = useStyles();
   const [checked, setChecked] = useState(false);
   const [user, setUser] = useFormFields({
@@ -73,15 +71,8 @@ export default function Register({ setLoggedIn, loggedIn }) {
     account_type: "",
   });
 
-  //   const handleRegister = (event) => {
-  //     event.preventDefault();
-  //     register(business);
-  //     history.push("/profile/home");
-  //     setLoggedIn(true);
-  //   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(user)
     let firstName = user.first_name
 
     let lastName = user.last_name
@@ -96,7 +87,6 @@ export default function Register({ setLoggedIn, loggedIn }) {
 
     let accountType = user.account_type
     if (!firstName || !lastName || !userName || !passWord || !eMail || !medicalIssue) {
-      console.log("Field not valid")
       alert('Fields Invalid Please Correct Issue and Try Again')
     }
     else {
@@ -109,29 +99,12 @@ export default function Register({ setLoggedIn, loggedIn }) {
         medical_issue: medicalIssue,
         account_type: accountType
       })
-        .then(function (res) {
-          console.log(res)
+        .then(({ data }) => {
+          setAuthUser(data.user)
         })
         .catch(function (err) {
           console.log(err)
         })
-
-      try {
-        // const { data } = await axios.post('http://localhost:3030/users/register', {
-        //   first_name: "erwins",
-        //   last_name: "saget",
-        //   user_name: "erwezy",
-        //   email: "erwins1223@gmail.com",
-        //   password: "password",
-        //   medical_issue: "neurosis",
-        //   account_type: "patient"
-        //   })
-
-        _setToken('aklsdjflaksjflasf')
-        _setUser({ id: 1, first_name: firstName, last_name: lastName, user_name: userName, email: eMail, password: passWord, medical_issue: medicalIssue, account_type: accountType })
-      } catch (err) {
-        console.log('err', err.message)
-      }
     }
   }
 

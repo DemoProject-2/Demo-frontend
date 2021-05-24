@@ -6,8 +6,9 @@ import {
   Button,
   Typography,
 } from "@material-ui/core";
-import { http } from '../lib/http';
+import { http, setAuthToken } from '../lib/http';
 import UnauthenticatedSideDrawer from './UnauthenticatedSideDrawer'
+import { useAuthContext } from '../context/auth-context';
 
 const useStyles = makeStyles((theme) => ({
   searchfield: {
@@ -68,6 +69,7 @@ const useStyles = makeStyles((theme) => ({
 
 //Dummy User: username:JohnSkelington password:JSkel123
 export default function SignIn() {
+  const { setUser } = useAuthContext()
   const classes = useStyles();
 
   const [username, setUsername] = React.useState('')
@@ -76,19 +78,19 @@ export default function SignIn() {
 
   const handleSubmit = e => {
     e.preventDefault()
-
     http.post('/login', {
       user_name: username,
       password
     })
-      .then(function (res) {
-        let login=res.data
-        if(login.length>0){
-          window.location.replace('https://www.google.com/')
-                  //redirect to home page
-
+      .then(({ data }) => {
+        if (!data.user) {
+          throw new Error(`no user in response`)
         }
-        console.log(res)
+        setUser(data.user)
+        if (!data.token) {
+          throw new Error('no token provided')
+        }
+        setAuthToken(data.token)
       })
       .catch(function (err) {
         setErrorMessage(err?.response?.data?.message)

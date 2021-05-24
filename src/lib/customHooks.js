@@ -1,11 +1,7 @@
-import {useState, useEffect} from 'react';
+import {useState} from 'react';
 
 export function useFormFields(initialState) {
     const [fields, setValues] = useState(initialState);
-
-    useEffect(() => {
-        console.log(`${Object.values(fields)}`)
-    }, [fields])
   
     return [
       fields,
