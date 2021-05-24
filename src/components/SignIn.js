@@ -82,8 +82,13 @@ export default function SignIn() {
       password
     })
       .then(function (res) {
+        let login=res.data
+        if(login.length>0){
+          window.location.replace('https://www.google.com/')
+                  //redirect to home page
+
+        }
         console.log(res)
-        //redirect to home page
       })
       .catch(function (err) {
         setErrorMessage(err?.response?.data?.message)
