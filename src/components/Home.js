@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   paper: {
-    height: '27vw',
+    height: '32vw',
     width: '43vw',
     alignContent: "center"
   },
@@ -29,6 +29,10 @@ const useStyles = makeStyles((theme) => ({
   paper_container: {
     paddingLeft: '15vw',
     alignContent: "center"
+  }, 
+  subheading: {
+    margin: '35% 35px',
+    color:"#375C23"
   }
 
 }));
@@ -51,6 +55,7 @@ export default function Home() {
                   <Grid Item className={classes.image}>
                     <img className={classes.img} alt="complex" src="/assets/logo.png" />
                   </Grid>
+                  <h1 className={classes.subheading}>Your Mental Health Helper for Branching Out and Meet A Specialist For You</h1>
                 </Grid>
                 <Grid item xs={12} sm container>
                 </Grid>

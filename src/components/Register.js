@@ -33,15 +33,14 @@ const useStyles = makeStyles((theme) => ({
     },
     color: "#f6f8f9",
     background: "#375C23",
-    padding: "12px 18px",
-    fontSize: "14px",
+    padding: "22px 28px",
+    fontSize: "24px",
     lineHeight: "16px",
     height: "auto",
     borderWidth: "0",
     borderRadius: "20px",
-    left: 230,
-    top: 30,
-    marginBottom: 50,
+    top: 90,
+    marginBottom: 140,
   },
   justify: {
     color: "#375C23",
@@ -53,6 +52,9 @@ const useStyles = makeStyles((theme) => ({
     maxHeight: '50%',
     maxWidth: '50%',
     paddingTop: '3vw',
+  },
+  radio: {
+    fontSize: '30px', 
   }
 }));
 
@@ -128,11 +130,6 @@ export default function Register({ setLoggedIn, loggedIn }) {
               alignContent="center"
               wrap="nowrap"
             >
-              <img
-                className={classes.logo}
-                src="/assets/BizWiz landing logo.PNG"    /////add logo
-                alt=""
-              />
             </Grid>
             <form autoComplete="off" onSubmit={handleSubmit}>
               <p className={classes.justify}><input
@@ -140,13 +137,13 @@ export default function Register({ setLoggedIn, loggedIn }) {
                 value="specialist"
                 onClick={setUser}
                 name="account_type" />
-                <t>Specialist</t>
+                <t className={classes.radio}>Specialist</t><br />
                 <input
                   type="radio"
                   value="patient"
                   onClick={setUser}
                   name="account_type" />
-                <t>Looking for a Specialist</t><br /></p>
+                <t className={classes.radio}>Looking for a Specialist</t><br /><br /><br /><br /></p>
               <Grid container justify="space-around" spacing={1}>
                 <Grid item>
                   <TextField
@@ -221,14 +218,14 @@ export default function Register({ setLoggedIn, loggedIn }) {
                 component={Link} to="/login"
                 onClick={handleSubmit}
               >
-                Login
+                Sign Up
           </Button>
               <Typography
                 justify="center"
                 alignItems="center"
                 alignContent="center"
                 variant="subtitle2">
-                <a href="/login">Have an account? Login</a>
+                <a href="/login"><h2>Have an account? Login</h2></a>
               </Typography>
             </form>
           </Paper>

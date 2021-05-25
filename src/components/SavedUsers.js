@@ -13,10 +13,13 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     margin: '9% auto',
     maxWidth: '65%',
+    backgroundColor:"#C2F0AA",
+    borderRadius:'20px'
   },
   title: {
-    margin: "2% 10%",
-    fontSize: '60px'
+    margin: "-12% 39%",
+    fontSize: '75px',
+    paddingBottom: '9%'
   },
   favoriteUsers:{
     fontSize: "30px",
@@ -41,14 +44,14 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: 50,
   },
   userDiv: {
-    margin: '10px 100%',
-    width: '100%',
-    paddingRight: "50px"
+    margin: '10px 50%',
+    width: '350%',
+    paddingRight: "60px",    
   },
-  // buttonDiv: {
-  //   paddingLeft: "600px"
-  // },
-
+  page: {
+    margin: '10% 0px',
+    paddingBottom:'1px',
+  },  
 }));
 
 
@@ -73,15 +76,15 @@ export default function SavedUsers() {
 
 
   return (
-    <div>
+    <div className={classes.page} style={{backgroundImage: 'url("/assets/background.jpg")'}}>
       <SideDrawer />
-      <h1 className={classes.title}>My {user.accountType === 'patient' ? 'Specialists' : 'Patients' }</h1>
+      <h1 className={classes.title} style={{color: "#375C23"}}>My {user.accountType === 'patient' ? 'Patients': 'Specialists' }</h1>
       <Paper className={classes.paper}>
         <Grid container spacing={2}>
           <Grid item>
             <Grid Item id='saved' className={classes.favoriteUsers}>
               {Array.isArray(users) && users.length === 0 && <p>Nothing to see here!</p>}
-              {Array.isArray(users) && users.length > 0 && users.map((search) => <div className={classes.userDiv}><p><b>{search.user_name}</b> - {search.medical_issue} <Button className={classes.rmvbtn}>Remove</Button></p></div>)}
+              {Array.isArray(users) && users.length > 0 && users.map((search) => <div className={classes.userDiv}><p><b>{search.user_name}</b> - {search.medical_issue} <Button className={classes.rmvbtn}>Remove</Button></p>{search.email}</div>)}
             </Grid>
           </Grid>
           <Grid item xs={12} sm container>

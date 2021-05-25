@@ -158,7 +158,7 @@ export default function AuthenticatedSideDrawer() {
         </div>
         <Divider />
         <TypographyStyle>
-          {['Home'].map((text, index) => (
+          {/* {['Home'].map((text, index) => (
             <ListItem
               button key={text}
               component={Link} to='/'
@@ -166,7 +166,7 @@ export default function AuthenticatedSideDrawer() {
               <ListItemIcon><PersonOutlineIcon style={{ color: '#375C23' }} /></ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
-          ))}
+          ))} */}
           {['My Account'].map((text, index) => (
             <ListItem
               button key={text}
@@ -229,7 +229,7 @@ export default function AuthenticatedSideDrawer() {
               </ListItem>
             ))
           )}
-          {['Chat'].map((text, index) => (
+          {/* {['Chat'].map((text, index) => (
             <ListItem
               button key={text}
               component={Link} to='/chat'
@@ -237,7 +237,7 @@ export default function AuthenticatedSideDrawer() {
               <ListItemIcon><FindInPageRoundedIcon style={{ color: '#375C23' }} /></ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
-          ))}
+          ))} */}
           <Divider />
           <List>
             {['Log Out'].map((text, index) => (

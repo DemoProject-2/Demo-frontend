@@ -23,9 +23,9 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     border: " 1px solid #dfe1e5",
     borderRadius: "24px",
-    height: "44px",
-    margin: "10px auto 20px",
-    width: "400px",
+    height: "80px",
+    margin: "0px 25%",
+    width: "1000px",
     outline: "none",
     textIndent: "30px",
     textDecoration: "none",
@@ -39,12 +39,12 @@ const useStyles = makeStyles((theme) => ({
     },
     color: "#f6f8f9",
     background: "#375C23",
-    padding: "12px 18px",
-    fontSize: "14px",
+    padding: "25px 28px",
+    fontSize: "18px",
     lineHeight: "16px",
     height: "auto",
     borderWidth: "0",
-    borderRadius: "20px",
+    borderRadius: "40px",
     top: 20,
     marginBottom: 50,
   },
@@ -57,18 +57,19 @@ const useStyles = makeStyles((theme) => ({
     },
     color: "#f6f8f9",
     background: "#375C23",
-    padding: "12px 18px",
-    fontSize: "14px",
+    padding: "25px 28px",
+    fontSize: "24px",
     lineHeight: "16px",
     height: "auto",
     borderWidth: "0",
-    borderRadius: "20px",
-    top: -60,
+    borderRadius: "40px",
+    top: -80,
     marginBottom: '2%',
-    left: '26%',
+    left: '23%',
   },
   textcolor: {
-    color: '#375C23'
+    color: '#375C23',
+    fontSize:'30px'
   },
   user_container: {
     padding: '5vw'
@@ -94,7 +95,7 @@ const useStyles = makeStyles((theme) => ({
   },
   extraspace: {
     margin: '-9%'
-  }
+  },
 }));
 
 export default function Search() {
@@ -143,7 +144,7 @@ export default function Search() {
                 specialists.push(users[i])
               }
             }
-            const usersList = specialists.map((search) => <div><div><b>{search.user_name}</b><p>Specializes In: {search.medical_issue}</p></div><div><Button onClick={(e) => addFavorite(e,search.id)} className={classes.btnFormat}>Add to Favorites</Button><Button onClick={chat} className={classes.btnFormat}>Message</Button></div></div>)
+            const usersList = specialists.map((search) => <div><div><h1><b>{search.user_name}</b></h1><p><h2>Specializes In: {search.medical_issue}</h2></p></div><div><Button onClick={(e) => addFavorite(e,search.id)} className={classes.btnFormat}>Add to Favorites</Button><Button onClick={chat} className={classes.btnFormat}>Message</Button></div></div>)
             if (usersList.length > 0) {
               ReactDOM.render(<div>{usersList}</div>, document.getElementById('list'))
             }
@@ -162,7 +163,7 @@ export default function Search() {
                 specialists.push(users[i])
               }
             }
-            const usersList = specialists.map((search) => <div><div><b>{search.user_name}</b><p>Specializes In: {search.medical_issue}</p></div><div><Button onClick={(e) => addFavorite(e,search.id)} className={classes.btnFormat}>Add to Favorites</Button><Button onClick={chat} className={classes.btnFormat}>Message</Button></div></div>)
+            const usersList = specialists.map((search) => <div><div><h1><b>{search.user_name}</b></h1><p><h2>Specializes In: {search.medical_issue}</h2></p></div><div><Button onClick={(e) => addFavorite(e,search.id)} className={classes.btnFormat}>Add to Favorites</Button><Button onClick={chat} className={classes.btnFormat}>Message</Button></div></div>)
             if (usersList.length > 0) {
               ReactDOM.render(<div>{usersList}</div>, document.getElementById('list'))
             }
@@ -181,7 +182,7 @@ export default function Search() {
                 specialists.push(users[i])
               }
             }
-            const usersList = specialists.map((search) => <div><div><b>{search.user_name}</b><p>Specializes In: {search.medical_issue}</p></div><div><Button onClick={(e) => addFavorite(e,search.id)} className={classes.btnFormat}>Add to Favorites</Button><Button onClick={chat} className={classes.btnFormat}>Message</Button></div></div>)
+            const usersList = specialists.map((search) => <div><div><h1><b>{search.user_name}</b></h1><p><h2>Specializes In: {search.medical_issue}</h2></p></div><div><Button onClick={(e) => addFavorite(e,search.id)} className={classes.btnFormat}>Add to Favorites</Button><Button onClick={chat} className={classes.btnFormat}>Message</Button></div></div>)
             if (usersList.length > 0) {
               ReactDOM.render(<div>{usersList}</div>, document.getElementById('list'))
             }
@@ -194,7 +195,7 @@ export default function Search() {
         http.get(`/users/all-specialist/specialist`)  //get all specialist DONE AND WORKING
           .then(res => {
             const users = res.data
-            const usersList = users.map((search) => <div><div><b>{search.user_name}</b><p>Relevant Health Concern: {search.medical_issue}</p></div><div><Button onClick={(e) => addFavorite(e,search.id)} className={classes.btnFormat}>Add to Favorites</Button><Button onClick={chat} className={classes.btnFormat}>Message</Button></div></div>)
+            const usersList = users.map((search) => <div><div><h1><b>{search.user_name}</b></h1><p><h2>Relevant Health Concern: {search.medical_issue}</h2></p></div><div><Button onClick={(e) => addFavorite(e,search.id)} className={classes.btnFormat}>Add to Favorites</Button><Button onClick={chat} className={classes.btnFormat}>Message</Button></div></div>)
             if (usersList.length > 0) {
               ReactDOM.render(<div>{usersList}</div>, document.getElementById('list'))
             }
@@ -215,7 +216,7 @@ export default function Search() {
                 patients.push(users[i])
               }
             }
-            const usersList = patients.map((search) => <div><div><b>{search.user_name}</b><p>Relevant Health Concern: {search.medical_issue}</p></div><div><Button onClick={(e) => addFavorite(e,search.id)} className={classes.btnFormat}>Add to Favorites</Button><Button onClick={chat} className={classes.btnFormat}>Message</Button></div></div>)
+            const usersList = patients.map((search) => <div><div><h1><b>{search.user_name}</b></h1><p><h2>Relevant Health Concern: {search.medical_issue}</h2></p></div><div><Button onClick={(e) => addFavorite(e,search.id)} className={classes.btnFormat}>Add to Favorites</Button><Button onClick={chat} className={classes.btnFormat}>Message</Button></div></div>)
             if (usersList.length > 0) {
               ReactDOM.render(<div>{usersList}</div>, document.getElementById('list'))
             }
@@ -228,7 +229,7 @@ export default function Search() {
         http.get(`/users/username/${userName}`)  //get patients by username DONE AND WORKING
           .then(res => {
             const users = res.data
-            const usersList = users.map((search) => <div><div><b>{search.user_name}</b><p>Relevant Health Concern: {search.medical_issue}</p></div><div><Button onClick={(e) => addFavorite(e,search.id)} className={classes.btnFormat}>Add to Favorites</Button><Button onClick={chat} className={classes.btnFormat}>Message</Button></div></div>)
+            const usersList = users.map((search) => <div><div><h1><b>{search.user_name}</b></h1><p><h2>Relevant Health Concern: {search.medical_issue}</h2></p></div><div><Button onClick={(e) => addFavorite(e,search.id)} className={classes.btnFormat}>Add to Favorites</Button><Button onClick={chat} className={classes.btnFormat}>Message</Button></div></div>)
             if (usersList.length > 0) {
               ReactDOM.render(<div>{usersList}</div>, document.getElementById('list'))
             }
@@ -247,7 +248,7 @@ export default function Search() {
                 patients.push(users[i])
               }
             }
-            const usersList = patients.map((search) => <div><div><b>{search.user_name}</b><p>Relevant Health Concern: {search.medical_issue}</p></div><div><Button onClick={(e) => addFavorite(e,search.id)} className={classes.btnFormat}>Add to Favorites</Button><Button onClick={chat} className={classes.btnFormat}>Message</Button></div></div>)
+            const usersList = patients.map((search) => <div><div><h1><b>{search.user_name}</b></h1><p><h2>Relevant Health Concern: {search.medical_issue}</h2></p></div><div><Button onClick={(e) => addFavorite(e,search.id)} className={classes.btnFormat}>Add to Favorites</Button><Button onClick={chat} className={classes.btnFormat}>Message</Button></div></div>)
             if (usersList.length > 0) {
               ReactDOM.render(<div>{usersList}</div>, document.getElementById('list'))
             }
@@ -260,7 +261,7 @@ export default function Search() {
         http.get(`/users/all-patients/patient`)  //get all patients DONE AND WORKING
           .then(res => {
             const users = res.data
-            const usersList = users.map((search) => <div><div><b>{search.user_name}</b><p>Relevant Health Concern: {search.medical_issue}</p></div><div><Button onClick={(e) => addFavorite(e,search.id)} className={classes.btnFormat}>Add to Favorites</Button><Button onClick={chat} className={classes.btnFormat}>Message</Button></div></div>)
+            const usersList = users.map((search) => <div><div><h1><b>{search.user_name}</b></h1><p><h2>Relevant Health Concern: {search.medical_issue}</h2></p></div><div><Button onClick={(e) => addFavorite(e,search.id)} className={classes.btnFormat}>Add to Favorites</Button><Button onClick={chat} className={classes.btnFormat}>Message</Button></div></div>)
             if (usersList.length > 0) {
               ReactDOM.render(<div>{usersList}</div>, document.getElementById('list'))
             }
@@ -283,7 +284,7 @@ export default function Search() {
           name="username"
           id='searchField'
           defaultValue={search.username}
-          placeholder="Search"
+          placeholder="Search By Username"
           onChange={setUser}
           className={classes.searchfield}
         />
@@ -309,7 +310,10 @@ export default function Search() {
             <input type="radio" value="Bipolar Disorder" onClick={setUser} name="medical_issue" /><t className={classes.textcolor}>Bipolar Disorder</t><br />
             <input type="radio" value="Depression" onClick={setUser} name="medical_issue" /><t className={classes.textcolor}>Depression</t><br />
             <input type="radio" value="Dissociative Disorder" onClick={setUser} name="medical_issue" /><t className={classes.textcolor}>Dissociative Disorder</t><br />
+            <input type="radio" value="Autism" onClick={setUser} name="medical_issue" /><t className={classes.textcolor}>Autism</t><br />
+            <input type="radio" value="Schizophrenia" onClick={setUser} name="medical_issue" /><t className={classes.textcolor}>Schizophrenia</t><br />
             <input type="radio" value="Eating Disorder" onClick={setUser} name="medical_issue" /><t className={classes.textcolor}>Eating Disorder</t><br />
+            <input type="radio" value="Psychosis" onClick={setUser} name="medical_issue" /><t className={classes.textcolor}>Psychosis</t><br />
             <input type="radio" value="Post-traumatic Stress Disorder" onClick={setUser} name="medical_issue" /><t className={classes.textcolor}>Post-traumatic Stress Disorder</t><br />
           </div>
           {/* <div><ViewButton /></div><br/> */}

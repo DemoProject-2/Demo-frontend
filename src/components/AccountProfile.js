@@ -7,7 +7,7 @@ import AuthenticatedSideDrawer from "./AuthenticatedSideDrawer.js";
 import { http } from "../lib/http";
 import Grid from '@material-ui/core/Grid';
 // import { useFormFields } from "../lib/customHooks";
-
+import "./AccountProfile.css"
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -28,13 +28,14 @@ const useStyles = makeStyles((theme) => ({
   },
   welcome: {
     fontSize: "70px",
-    paddingLeft: '10%',
-    margin: '11% 1%'
+    paddingLeft: '5%',
+    margin: '-16% 35%'
   },
   userInfo: {
-    fontSize: "40px",
-    paddingLeft: '10%',
-    margin: '-11% 1%'
+    paddingTop:'30px',
+    fontSize: "50px",
+    paddingLeft: '5%',
+    margin: '15% 35%'
   },
   userIcon: {
     height: "30%",
@@ -61,7 +62,7 @@ const useStyles = makeStyles((theme) => ({
     height: "auto",
     borderWidth: "0",
     borderRadius: "20px",
-    top: 20,
+    top: -750,
     marginBottom: 50,
     left: '46vw',
   },
@@ -109,7 +110,31 @@ const useStyles = makeStyles((theme) => ({
   },
   page_padding: {
     paddingTop: '3vw'
+  },
+  notesdiv: {
+    margin:'-9% 6%'
+  },
+  notefont:{
+    fontSize:'300%',
+    textDecoration: 'underline',
+    paddingBottom: "40px"
+  },
+  notelist:{
+    fontSize:'300%',
+    paddingLeft:'60px',
+    paddingTop:'30px'
+  },
+  listBorder: {
+    backgroundColor: '#C2F0AA',
+    borderRadius:'120px'
+  },
+  page: {
+    margin:'-28px'
+  },
+  page:{
+    paddingTop: '6%'
   }
+
 }));
 
 export default function AccountProfile() {
@@ -133,15 +158,20 @@ export default function AccountProfile() {
     fetchNotes()
   }, [])
   return (
-    <div>
+    <div className={classes.page}>
+    <div >
       <AuthenticatedSideDrawer />
+      <div>
       <img className={classes.userIcon} alt="user icon" src="/assets/userIcon.jpg" />
       <h1 className={classes.welcome}>{user.user_name}'s Page</h1><br />
-      <h3 className={classes.userInfo}>Name: {user.first_name} {user.last_name}<h4>Related Mental Health concern: {user.medical_issue}</h4></h3>
+      <h3 className={classes.userInfo}>Name: {user.first_name} {user.last_name}<h4 className={'uppercase'}>{user.account_type} for {user.medical_issue}</h4></h3>
       <div className={classes.EditAccountInfodiv}><Button className={classes.editbtn}>Edit Account Info</Button></div>
-      <Grid item id='notes'>
-        {Array.isArray(reminders) && reminders.map(rem => <div className={classes.noteDiv} key={rem.id}><div>{rem.title}</div><div>{rem.content}</div> </div>)}
-      </Grid>
+      </div>
+      <div className={classes.notesdiv}>
+        <h1 className={classes.notefont}>Upcoming Appointments: </h1>
+        {Array.isArray(reminders) && reminders.map(rem =><div className={classes.listBorder}> <div className={classes.notelist} key={rem.id}><div><b>Note Title : </b>{rem.title}</div><div><b>Appointment Details : </b>{rem.content}</div></div><br /><br /></div>)}
+      </div>
+    </div>
     </div>
   )
 }

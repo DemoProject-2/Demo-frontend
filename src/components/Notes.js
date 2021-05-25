@@ -1,21 +1,21 @@
 import { makeStyles } from "@material-ui/core";
-import "./Home.css"
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import { Button } from "@material-ui/core";
 import { useFormFields } from "../lib/customHooks";
 import React from "react";
 import { http } from "../lib/http";
-
+import "./Notes.css"
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
   paper: {
     margin: 'auto',
-    maxWidth: 580,
-    paddingTop: '2vw',
-    paddingLeft: '3%'
+    maxWidth: 880,
+    height:'600px',
+    paddingLeft:'3%',
+    width:'600px'
   },
   image: {
     width: 328,
@@ -47,7 +47,8 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: 50,
   },
   note_container: {
-    margin: '1% 20%'
+    margin: '-2% 20%',
+    paddingTop: '3%',
   },
   text: {
     width: '90%',
@@ -55,7 +56,29 @@ const useStyles = makeStyles((theme) => ({
     margin: "auto"
   },
   noteDiv: {
-
+    paddingTop:'5px',
+    fontSize:'33px',
+    paddingLeft:'20%'
+  },
+  notes: {
+    margin: '105px -200px',  
+  },
+  mainDiv: {
+  },
+  general: {
+    fontSize:'50px',
+    margin:'-105px -100px',
+    paddingBottom:'35px',
+    color: "#375C23"
+  },
+  page_padding:{
+    paddingBottom: '26%',
+    paddingRight: '26%',
+    height:"auto",    
+    backgroundColor:'white'
+  },
+  divPadding: {
+    padding:'2%'
   }
 }));
 
@@ -99,7 +122,7 @@ export default function Notes() {
   }
 
   return (
-    <div>
+    <div className={classes.mainDiv} style={{backgroundImage: 'url("/assets/background.jpg")'}}>
       <div className={classes.note_container}>
         <Paper className={classes.paper}>
           
@@ -125,9 +148,16 @@ export default function Notes() {
             </form>
           </Grid>
         </Paper>
-        <div className={classes.page_padding}><div className='page-container'>
-          <Grid item id='notes'>
-            {Array.isArray(notes) && notes.map(n => <div className={classes.noteDiv} key={n.id}><div>{n.title}</div><div>{n.content}</div> </div>)}
+        <div className={classes.divPadding}></div>
+        <div className={classes.page_padding}><div className='page'>
+          <h1 className={classes.general}>General Notes : </h1>
+          <Grid item id='notes' className={classes.notes}>
+            {Array.isArray(notes) && notes.map(n => 
+              <div className={classes.noteDiv} key={n.id}>
+              <div><b style={{color:'#375C23'}}>Note Title : </b>{n.title}</div>
+              <div>{n.content}</div>
+              <div style={{color:'#375C23'}}>___</div>
+              </div>)}
           </Grid>
         </div>
         </div>

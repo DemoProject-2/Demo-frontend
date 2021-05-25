@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
     margin: 'auto',
     display: 'block',
     maxHeight: '50%',
-    maxWidth: '50%',
+    maxWidth: '80%',
     paddingTop: '3vw',
   },
   signIn: {
@@ -57,14 +57,11 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     padding: "20px",
-    minHeight: "500px",
+    minHeight: "700px",
     maxHeight: "70vh",
-    width: 380,
+    width: 680,
     margin: "20px auto",
   },
-  buttonPadding: {
-    paddingLeft: '12vw'
-  }
 }));
 
 //Dummy User: username:JohnSkelington password:JSkel123
