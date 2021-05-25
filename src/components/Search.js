@@ -253,10 +253,7 @@ export default function Search() {
               ReactDOM.render(<div>{usersList}</div>, document.getElementById('list'))
             }
             else {
-              ReactDOM.render(<h1>Match Could Not Be Found</h1>, document.getElementById('list'))
-            }
-          })
-      }
+              ReactDOM.render(<h1>Match Could Not Be Found</h1>, document.getElementById('list'))}})}
       if (!medicalIssue && !userName) {
         http.get(`/users/all-patients/patient`)  //get all patients DONE AND WORKING
           .then(res => {
@@ -266,12 +263,7 @@ export default function Search() {
               ReactDOM.render(<div>{usersList}</div>, document.getElementById('list'))
             }
             else {
-              ReactDOM.render(<h1>Match Could Not Be Found</h1>, document.getElementById('list'))
-            }
-          })
-      }
-    }
-  }
+              ReactDOM.render(<h1>Match Could Not Be Found</h1>, document.getElementById('list'))}})}}}
   return (
     <body>
       <SideDrawer />
