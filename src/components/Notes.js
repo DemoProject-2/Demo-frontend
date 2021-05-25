@@ -14,8 +14,8 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     margin: 'auto',
     maxWidth: 580,
-    paddingTop: '5vw',
-    paddingLeft: '9vw'
+    paddingTop: '2vw',
+    paddingLeft: '3%'
   },
   image: {
     width: 328,
@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
     height: "auto",
     borderWidth: "0",
     borderRadius: "20px",
-    left: '10vw',
+    left: '5%',
     top: 30,
     marginBottom: 50,
   },
@@ -50,16 +50,22 @@ const useStyles = makeStyles((theme) => ({
     margin: '1% 20%'
   },
   text: {
-    width: '400px',
-    padding: '2vw'
+    width: '90%',
+    padding: '3vw',
+    margin: "auto"
   },
+  noteDiv: {
+
+  }
 }));
 
 
 export default function Notes() {
   const classes = useStyles();
   const [note, setNote] = useFormFields({
-    content: ""
+    title: "",
+    content: "",
+    note_type:""
   })
   const [notes, setNotes] = React.useState(null)
 
@@ -79,12 +85,13 @@ export default function Notes() {
 
   const submitNote = async e => {
     e.preventDefault()
-
+    console.log(note.note_type)
     try {
       const { data } = await http.post('/notes', {
-        content: note.content
+        title: note.title,
+        content: note.content,
+        note_type: note.note_type
       })
-
      setNotes([...notes, data.note])
     } catch (err) {
       console.log(err)
@@ -95,11 +102,22 @@ export default function Notes() {
     <div>
       <div className={classes.note_container}>
         <Paper className={classes.paper}>
+          
           <Grid container spacing={2}>
-
             <form>
+            <p className={classes.justify}><input
+                type="radio"
+                value="Appointment_Reminder"
+                onClick={setNote}
+                name="note_type" />
+                <t>Appointment Reminder</t></p>
               <Grid item>
-                <textarea name="content" value={note.content} onChange={setNote} rows='7' cols='50' className={classes.text} placeholder='Please write a note about how you are feeling, what you wish to discuss with your specialist, or anything on your mind.'></textarea>
+                <textarea name="title" value={note.title} onChange={setNote} rows='1' cols='50' className={classes.text} placeholder='Note Title'></textarea>
+              </Grid>
+              <Grid item>
+                <textarea name="content" value={note.content} onChange={setNote} rows='7' cols='50' className={classes.text} placeholder='Please write a note including date, note title and content.'></textarea>
+              </Grid>
+              <Grid Item>
               </Grid>
               <Grid item xs={12} sm container>
               </Grid>
@@ -109,7 +127,7 @@ export default function Notes() {
         </Paper>
         <div className={classes.page_padding}><div className='page-container'>
           <Grid item id='notes'>
-            {Array.isArray(notes) && notes.map(n => <div key={n.id}>{n.content}</div>)}
+            {Array.isArray(notes) && notes.map(n => <div className={classes.noteDiv} key={n.id}><div>{n.title}</div><div>{n.content}</div> </div>)}
           </Grid>
         </div>
         </div>

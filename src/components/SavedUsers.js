@@ -1,4 +1,4 @@
-import { makeStyles } from "@material-ui/core";
+import { makeStyles, Button } from "@material-ui/core";
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import SideDrawer from "./AuthenticatedSideDrawer.js"
@@ -11,12 +11,43 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   paper: {
-    margin: '15% auto',
-    maxWidth: 580,
+    margin: '9% auto',
+    maxWidth: '65%',
   },
   title: {
-    margin: "-8% 10%"
-  }
+    margin: "2% 10%",
+    fontSize: '60px'
+  },
+  favoriteUsers:{
+    fontSize: "30px",
+  },
+  rmvbtn: {
+    "&:hover": {
+      borderColor: "#375C23",
+      boxShadow: "0 1px 6px #adcaec",
+      backgroundColor: "#C2F0AA",
+      color: "#375C23"
+    },
+    color: "#f6f8f9",
+    background: "#375C23",
+    padding: "12px 18px",
+    fontSize: "14px",
+    lineHeight: "16px",
+    height: "auto",
+    borderWidth: "0",
+    borderRadius: "20px",
+    left: '50%',
+    top: 30,
+    marginBottom: 50,
+  },
+  userDiv: {
+    margin: '10px 100%',
+    width: '100%',
+    paddingRight: "50px"
+  },
+  // buttonDiv: {
+  //   paddingLeft: "600px"
+  // },
 
 }));
 
@@ -48,9 +79,9 @@ export default function SavedUsers() {
       <Paper className={classes.paper}>
         <Grid container spacing={2}>
           <Grid item>
-            <Grid Item id='saved'>
+            <Grid Item id='saved' className={classes.favoriteUsers}>
               {Array.isArray(users) && users.length === 0 && <p>Nothing to see here!</p>}
-              {Array.isArray(users) && users.length > 0 && users.map((search) => <div><b>{search.user_name}</b>{search.medical_issue}</div>)}
+              {Array.isArray(users) && users.length > 0 && users.map((search) => <div className={classes.userDiv}><p><b>{search.user_name}</b> - {search.medical_issue} <Button className={classes.rmvbtn}>Remove</Button></p></div>)}
             </Grid>
           </Grid>
           <Grid item xs={12} sm container>

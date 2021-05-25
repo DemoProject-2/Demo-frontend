@@ -11,20 +11,24 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     height: '27vw',
-    width: '43vw'
+    width: '43vw',
+    alignContent: "center"
   },
   image: {
     width: 328,
     height: 328,
+    alignContent: "center"
   },
   img: {
     margin: 'auto',
     display: 'block',
-    maxHeight: '110%',
-    maxWidth: '180%',
+    alignContent: "center",
+    maxHeight: '270%',
+    maxWidth: '340%',
   },
   paper_container: {
-    paddingLeft: '15vw'
+    paddingLeft: '15vw',
+    alignContent: "center"
   }
 
 }));

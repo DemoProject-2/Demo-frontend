@@ -1,4 +1,4 @@
-import { makeStyles } from "@material-ui/core";
+import { makeStyles, Button } from "@material-ui/core";
 import "./Home.css"
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
@@ -28,7 +28,30 @@ const useStyles = makeStyles((theme) => ({
     maxHeight: '110%',
     maxWidth: '180%',
   },
-
+  sendbtn: {
+    "&:hover": {
+      borderColor: "#375C23",
+      boxShadow: "0 1px 6px #adcaec",
+      backgroundColor: "#C2F0AA",
+      color: "#375C23"
+    },
+    color: "#f6f8f9",
+    background: "#375C23",
+    padding: "12px 18px",
+    fontSize: "14px",
+    lineHeight: "16px",
+    height: "auto",
+    borderWidth: "0",
+    borderRadius: "20px",
+    left: '10vw',
+    top: 30,
+    marginBottom: 50,
+  },
+  welcome: {
+    fontSize: "25px",
+    paddingLeft: '10%',
+    margin: '11% 1%'
+  },
 }));
 
 export default function Home() {
@@ -77,7 +100,7 @@ export default function Home() {
         <Grid container spacing={2}>
           <Grid item>
             <Grid Item>
-              Chat
+              <h1 className={classes.welcome}>Personal Chat Room</h1><br />
               {!loggedIn ? (
                 <div className="logIn">
                   <div className="inputs">
@@ -96,7 +119,7 @@ export default function Home() {
                       }}
                     />
                   </div>
-                  <button onClick={connectToRoom}>Enter Chat</button>
+                  <Button className={classes.sendbtn} onClick={connectToRoom}>Enter Chat</Button>
                 </div>
               ) : (
                 //set this div to be able to be a scroll box
@@ -125,7 +148,7 @@ export default function Home() {
                       }}
                     />
                     {/* have the sendMessage clear the messageInputs div */}
-                    <button onClick={sendMessage}>Send</button>
+                    <Button className={classes.sendbtn} onClick={sendMessage}>Send</Button>
                   </div>
                 </div>
               )}
