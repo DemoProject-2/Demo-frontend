@@ -5,7 +5,7 @@ import { AuthContext } from '../context/auth-context'
 import React from "react";
 import AuthenticatedSideDrawer from "./AuthenticatedSideDrawer.js";
 import { http } from "../lib/http";
-import Grid from '@material-ui/core/Grid';
+// import Grid from '@material-ui/core/Grid';
 // import { useFormFields } from "../lib/customHooks";
 import "./AccountProfile.css"
 const useStyles = makeStyles((theme) => ({
@@ -129,9 +129,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius:'120px'
   },
   page: {
-    margin:'-28px'
-  },
-  page:{
+    margin:'-28px',
     paddingTop: '6%'
   }
 

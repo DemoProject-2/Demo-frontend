@@ -72,7 +72,7 @@ export default function SavedUsers() {
     }
 
     fetchUsers();
-  }, [])
+  }, [user.id])
 
 
   return (

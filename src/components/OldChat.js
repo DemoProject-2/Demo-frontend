@@ -1,3 +1,5 @@
+//check and go over the chat app on the desktop and make sure everything is as it was
+
 import { makeStyles, Button } from "@material-ui/core";
 import "./Home.css"
 import Grid from '@material-ui/core/Grid';
@@ -6,9 +8,7 @@ import SideDrawer from "./AuthenticatedSideDrawer.js"
 
 import React, { useState, useEffect } from "react";
 import io from "socket.io-client";
-let socket;
-//edit connection port to work with either heroku or localhost
-const CONNECTION_PORT = "localhost:3030";
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -54,33 +54,38 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+let socket;
+
 export default function Home() {
+  //edit connection port to work with either heroku or localhost
+
   const classes = useStyles();
 
-  //for chat room functionality
   const [loggedIn, setLoggedIn] = useState(false);
   const [room, setRoom] = useState("");
   const [userName, setUserName] = useState("");
 
-  // After Login
   const [message, setMessage] = useState("");
   const [messageList, setMessageList] = useState([]);
 
   useEffect(() => {
-    socket = io(CONNECTION_PORT);
-  }, [CONNECTION_PORT]);
+    socket = io('http://localhost:3030');
+    return () => {
+      socket.disconnect();
+    }
+  },[])
 
   useEffect(() => {
     socket.on("receive_message", (data) => {
       setMessageList([...messageList, data]);
     });
-  });
+  },[messageList]);
   const connectToRoom = () => {
     setLoggedIn(true);
     socket.emit("join_room", room);
   };
 
-  const sendMessage = async () => {
+  const sendMessage = () => {
     let messageContent = {
       room: room,
       content: {
@@ -89,9 +94,11 @@ export default function Home() {
       },
     };
     
-    await socket.emit("send_message", messageContent);
+    console.log()
+    socket.emit("send_message", messageContent);
     setMessageList([...messageList, messageContent.content]);
     setMessage("");
+    console.log("Test")
   };
   return (
     <div>
@@ -129,7 +136,7 @@ export default function Home() {
                       return (
                         <div
                           className="messageContainer"
-                          id={val.author == userName ? "You" : "Other"}
+                          id={val.author === userName ? "You" : "Other"}
                         >
                           <div className="messageIndividual">
                             {val.author}: {val.message}
@@ -143,6 +150,7 @@ export default function Home() {
                     <input
                       type="text"
                       placeholder="Message..."
+                      value={message}
                       onChange={(e) => {
                         setMessage(e.target.value);
                       }}
