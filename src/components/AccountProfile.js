@@ -117,7 +117,8 @@ const useStyles = makeStyles((theme) => ({
   notefont:{
     fontSize:'300%',
     textDecoration: 'underline',
-    paddingBottom: "40px"
+    paddingBottom: "40px",
+    margin: "30px"
   },
   notelist:{
     fontSize:'300%',
@@ -160,14 +161,14 @@ export default function AccountProfile() {
     <div >
       <AuthenticatedSideDrawer />
       <div>
-      <img className={classes.userIcon} alt="user icon" src="/assets/userIcon.jpg" />
+      <img className={classes.userIcon} alt="user icon" src="/assets/profile_pic.png" />
       <h1 className={classes.welcome}>{user.user_name}'s Page</h1><br />
       <h3 className={classes.userInfo}>Name: {user.first_name} {user.last_name}<h4 className={'uppercase'}>{user.account_type} for {user.medical_issue}</h4></h3>
       <div className={classes.EditAccountInfodiv}><Button className={classes.editbtn}>Edit Account Info</Button></div>
       </div>
       <div className={classes.notesdiv}>
         <h1 className={classes.notefont}>Upcoming Appointments: </h1>
-        {Array.isArray(reminders) && reminders.map(rem =><div className={classes.listBorder}> <div className={classes.notelist} key={rem.id}><div><b>Note Title : </b>{rem.title}</div><div><b>Appointment Details : </b>{rem.content}</div></div><br /><br /></div>)}
+        {Array.isArray(reminders) && reminders.map(rem =><div><div className={classes.listBorder}> <div className={classes.notelist} key={rem.id}><div><b>Note Title : </b>{rem.title}</div><div><b>Appointment Details : </b>{rem.content}</div></div><br /><br /></div><br/></div>)}
       </div>
     </div>
     </div>

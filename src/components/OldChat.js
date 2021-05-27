@@ -16,9 +16,9 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     margin: '200px auto',
-    maxWidth: 700,
+    maxWidth: 1000,
     height:800,
-    padding:'35px'
+    padding:'50px'
   },
   image: {
     width: 328,
@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
     height: "auto",
     borderWidth: "0",
     borderRadius: "20px",
-    left: '7vw',
+    left: '14vw',
     top: 130,
     marginBottom: 50,
   },
@@ -69,7 +69,8 @@ const useStyles = makeStyles((theme) => ({
     border: " 1px solid #dfe1e5",
     borderRadius: "24px",
     height: "80px",
-    width: "600px",
+    width: "890px",
+    fontSize: "30px",
     outline: "none",
     textIndent: "30px",
     textDecoration: "none",
@@ -88,8 +89,9 @@ name: {
   border: " 1px solid #dfe1e5",
   borderRadius: "24px",
   height: "80px",
-  width: "600px",
+  width: "890px",
   outline: "none",
+  fontSize: "30px",
   textIndent: "30px",
   textDecoration: "none",
 },
@@ -116,8 +118,8 @@ messagebtn: {
   borderWidth: "0",
   margin: '-97% 3%',
   borderRadius: "20px",
-  left: '8vw',
-  top: 160,
+  left: '28vw',
+  top: 20,
   marginBottom: 50,
 },
 welcome: {
@@ -137,11 +139,11 @@ sendmsg:{
   },
   backgroundColor: "#00000000",
   display: "flex",
-  margin:"200px 0px",
+  margin:"250px 0px",
   border: " 1px solid #dfe1e5",
   borderRadius: "24px",
-  height: "80px",
-  width: "600px",
+  height: "90px",
+  width: "620px",
   outline: "none",
   textIndent: "30px",
   textDecoration: "none",
@@ -166,8 +168,10 @@ export default function Home() {
   const [message, setMessage] = useState("");
   const [messageList, setMessageList] = useState([]);
 
+const url = process.env.NODE_ENV === 'production' ? 'https://mental-health-database.herokuapp.com/' : 'http://localhost:3000'
+
   useEffect(() => {
-    socket = io('http://localhost:3030');
+    socket = io(url);
     return () => {
       socket.disconnect();
     }
@@ -231,8 +235,8 @@ export default function Home() {
                 </div>
               ) : (
                 //set this div to be able to be a scroll box
-                <div className="chatContainer">
-                  <div className="messages">
+                <div className={classes.chatContainer}>
+                  <div className={classes.messages}>
                     {messageList.map((val, key) => {
                       return (
                         <div

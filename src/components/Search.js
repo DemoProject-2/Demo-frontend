@@ -97,6 +97,11 @@ const useStyles = makeStyles((theme) => ({
   extraspace: {
     margin: '-9%'
   },
+  profilepic:{
+    flex:1,
+    width: "20%",
+    margin: "0px -40px"
+  }
 }));
 
 export default function Search() {
@@ -145,7 +150,7 @@ export default function Search() {
                 specialists.push(users[i])
               }
             }
-            const usersList = specialists.map((search) => <div><div><h1><b>{search.user_name}</b></h1><p><h2>Specializes In: {search.medical_issue}</h2></p></div><div><Button onClick={(e) => addFavorite(e,search.id)} className={classes.btnFormat}>Add to Favorites</Button><Button onClick={chat} className={classes.btnFormat}>Message</Button></div></div>)
+            const usersList = specialists.map((search) => <div><div><img className={classes.profilepic} src='/assets/profile_pic.png' /><h1><b>{search.user_name}</b></h1><p><h2>Specializes In: {search.medical_issue}</h2></p></div><div><Button onClick={(e) => addFavorite(e,search.id)} className={classes.btnFormat}>Add to Favorites</Button><Button onClick={chat} className={classes.btnFormat}>Message</Button></div></div>)
             if (usersList.length > 0) {
               ReactDOM.render(<div>{usersList}</div>, document.getElementById('list'))
             }
@@ -164,7 +169,7 @@ export default function Search() {
                 specialists.push(users[i])
               }
             }
-            const usersList = specialists.map((search) => <div><div><h1><b>{search.user_name}</b></h1><p><h2>Specializes In: {search.medical_issue}</h2></p></div><div><Button onClick={(e) => addFavorite(e,search.id)} className={classes.btnFormat}>Add to Favorites</Button><Button onClick={chat} className={classes.btnFormat}>Message</Button></div></div>)
+            const usersList = specialists.map((search) => <div><div><img className={classes.profilepic} src='/assets/profile_pic.png' /><h1><b>{search.user_name}</b></h1><p><h2>Specializes In: {search.medical_issue}</h2></p></div><div><Button onClick={(e) => addFavorite(e,search.id)} className={classes.btnFormat}>Add to Favorites</Button><Button onClick={chat} className={classes.btnFormat}>Message</Button></div></div>)
             if (usersList.length > 0) {
               ReactDOM.render(<div>{usersList}</div>, document.getElementById('list'))
             }
@@ -183,7 +188,7 @@ export default function Search() {
                 specialists.push(users[i])
               }
             }
-            const usersList = specialists.map((search) => <div><div><h1><b>{search.user_name}</b></h1><p><h2>Specializes In: {search.medical_issue}</h2></p></div><div><Button onClick={(e) => addFavorite(e,search.id)} className={classes.btnFormat}>Add to Favorites</Button><Button onClick={chat} className={classes.btnFormat}>Message</Button></div></div>)
+            const usersList = specialists.map((search) => <div><div><img className={classes.profilepic} src='/assets/profile_pic.png' /><h1><b>{search.user_name}</b></h1><p><h2>Specializes In: {search.medical_issue}</h2></p></div><div><Button onClick={(e) => addFavorite(e,search.id)} className={classes.btnFormat}>Add to Favorites</Button><Button onClick={chat} className={classes.btnFormat}>Message</Button></div></div>)
             if (usersList.length > 0) {
               ReactDOM.render(<div>{usersList}</div>, document.getElementById('list'))
             }
@@ -196,7 +201,7 @@ export default function Search() {
         http.get(`/users/all-specialist/specialist`)  //get all specialist DONE AND WORKING
           .then(res => {
             const users = res.data
-            const usersList = users.map((search) => <div><div><h1><b>{search.user_name}</b></h1><p><h2>Relevant Health Concern: {search.medical_issue}</h2></p></div><div><Button onClick={(e) => addFavorite(e,search.id)} className={classes.btnFormat}>Add to Favorites</Button><Button onClick={chat} className={classes.btnFormat}>Message</Button></div></div>)
+            const usersList = users.map((search) => <div><div><img className={classes.profilepic} src='/assets/profile_pic.png' /><h1><b>{search.user_name}</b></h1><p><h2>Relevant Health Concern: {search.medical_issue}</h2></p></div><div><Button onClick={(e) => addFavorite(e,search.id)} className={classes.btnFormat}>Add to Favorites</Button><Button onClick={chat} className={classes.btnFormat}>Message</Button></div></div>)
             if (usersList.length > 0) {
               ReactDOM.render(<div>{usersList}</div>, document.getElementById('list'))
             }
@@ -217,7 +222,7 @@ export default function Search() {
                 patients.push(users[i])
               }
             }
-            const usersList = patients.map((search) => <div><div><h1><b>{search.user_name}</b></h1><p><h2>Relevant Health Concern: {search.medical_issue}</h2></p></div><div><Button onClick={(e) => addFavorite(e,search.id)} className={classes.btnFormat}>Add to Favorites</Button><Button onClick={chat} className={classes.btnFormat}>Message</Button></div></div>)
+            const usersList = patients.map((search) => <div><div><img className={classes.profilepic} src='/assets/profile_pic.png' /><h1><b>{search.user_name}</b></h1><p><h2>Relevant Health Concern: {search.medical_issue}</h2></p></div><div><Button onClick={(e) => addFavorite(e,search.id)} className={classes.btnFormat}>Add to Favorites</Button><Button onClick={chat} className={classes.btnFormat}>Message</Button></div></div>)
             if (usersList.length > 0) {
               ReactDOM.render(<div>{usersList}</div>, document.getElementById('list'))
             }
@@ -230,7 +235,7 @@ export default function Search() {
         http.get(`/users/username/${userName}`)  //get patients by username DONE AND WORKING
           .then(res => {
             const users = res.data
-            const usersList = users.map((search) => <div><div><h1><b>{search.user_name}</b></h1><p><h2>Relevant Health Concern: {search.medical_issue}</h2></p></div><div><Button onClick={(e) => addFavorite(e,search.id)} className={classes.btnFormat}>Add to Favorites</Button><Button onClick={chat} className={classes.btnFormat}>Message</Button></div></div>)
+            const usersList = users.map((search) => <div><div><img className={classes.profilepic} src='/assets/profile_pic.png' /><h1><b>{search.user_name}</b></h1><p><h2>Relevant Health Concern: {search.medical_issue}</h2></p></div><div><Button onClick={(e) => addFavorite(e,search.id)} className={classes.btnFormat}>Add to Favorites</Button><Button onClick={chat} className={classes.btnFormat}>Message</Button></div></div>)
             if (usersList.length > 0) {
               ReactDOM.render(<div>{usersList}</div>, document.getElementById('list'))
             }
@@ -249,7 +254,7 @@ export default function Search() {
                 patients.push(users[i])
               }
             }
-            const usersList = patients.map((search) => <div><div><h1><b>{search.user_name}</b></h1><p><h2>Relevant Health Concern: {search.medical_issue}</h2></p></div><div><Button onClick={(e) => addFavorite(e,search.id)} className={classes.btnFormat}>Add to Favorites</Button><Button onClick={chat} className={classes.btnFormat}>Message</Button></div></div>)
+            const usersList = patients.map((search) => <div><div><img className={classes.profilepic} src='/assets/profile_pic.png' /><h1><b>{search.user_name}</b></h1><p><h2>Relevant Health Concern: {search.medical_issue}</h2></p></div><div><Button onClick={(e) => addFavorite(e,search.id)} className={classes.btnFormat}>Add to Favorites</Button><Button onClick={chat} className={classes.btnFormat}>Message</Button></div></div>)
             if (usersList.length > 0) {
               ReactDOM.render(<div>{usersList}</div>, document.getElementById('list'))
             }
@@ -259,7 +264,7 @@ export default function Search() {
         http.get(`/users/all-patients/patient`)  //get all patients DONE AND WORKING
           .then(res => {
             const users = res.data
-            const usersList = users.map((search) => <div><div><h1><b>{search.user_name}</b></h1><p><h2>Relevant Health Concern: {search.medical_issue}</h2></p></div><div><Button onClick={(e) => addFavorite(e,search.id)} className={classes.btnFormat}>Add to Favorites</Button><Button onClick={chat} className={classes.btnFormat}>Message</Button></div></div>)
+            const usersList = users.map((search) => <div><div><img className={classes.profilepic} src='/assets/profile_pic.png' /><h1><b>{search.user_name}</b></h1><p><h2>Relevant Health Concern: {search.medical_issue}</h2></p></div><div><Button onClick={(e) => addFavorite(e,search.id)} className={classes.btnFormat}>Add to Favorites</Button><Button onClick={chat} className={classes.btnFormat}>Message</Button></div></div>)
             if (usersList.length > 0) {
               ReactDOM.render(<div>{usersList}</div>, document.getElementById('list'))
             }

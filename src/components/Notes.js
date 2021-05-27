@@ -156,7 +156,7 @@ export default function Notes() {
               <div className={classes.noteDiv} key={n.id}>
               <div><b style={{color:'#375C23'}}>Note Title : </b>{n.title}</div>
               <div>{n.content}</div>
-              <div style={{color:'#375C23'}}>___</div>
+              <div style={{color:'#375C23'}}>__________</div><br/>
               </div>)}
           </Grid>
         </div>

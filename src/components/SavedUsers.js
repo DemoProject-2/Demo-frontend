@@ -39,21 +39,28 @@ const useStyles = makeStyles((theme) => ({
     height: "auto",
     borderWidth: "0",
     borderRadius: "20px",
-    left: '50%',
+    left: '57%',
     top: 30,
-    marginBottom: 50,
+    marginBottom: 39
   },
   userDiv: {
     margin: '10px 50%',
     width: '350%',
-    paddingRight: "60px",    
+    paddingRight: "60px",
   },
   page: {
     margin: '10% 0px',
     paddingBottom:'1px',
-  },  
+  },
+  profilepic: {
+    flex:1,
+    width: "7%",
+    margin:"30px -200px"
+  },
+  favUsers:{
+    margin:'-20px 0px'
+  } 
 }));
-
 
 export default function SavedUsers() {
   const { user } = useAuthContext();
@@ -84,7 +91,7 @@ export default function SavedUsers() {
           <Grid item>
             <Grid Item id='saved' className={classes.favoriteUsers}>
               {Array.isArray(users) && users.length === 0 && <p>Nothing to see here!</p>}
-              {Array.isArray(users) && users.length > 0 && users.map((search) => <div className={classes.userDiv}><p><b>{search.user_name}</b> - {search.medical_issue} <Button className={classes.rmvbtn}>Remove</Button></p>{search.email}</div>)}
+              {Array.isArray(users) && users.length > 0 && users.map((search) =><div> <div className={classes.userDiv}><img className={classes.profilepic} src="/assets/profile_pic.png"/><Button className={classes.rmvbtn}>Remove</Button><p className={classes.favUsers}><b>{search.user_name}</b> - {search.medical_issue} </p><br/>{search.email}</div>___________________</div>)}
             </Grid>
           </Grid>
           <Grid item xs={12} sm container>

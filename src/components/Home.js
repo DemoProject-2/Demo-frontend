@@ -12,7 +12,8 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     height: '32vw',
     width: '43vw',
-    alignContent: "center"
+    alignContent: "center",
+    border:'10px solid #375C23'
   },
   image: {
     width: 328,
