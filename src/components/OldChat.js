@@ -15,8 +15,10 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   paper: {
-    margin: 'auto',
-    maxWidth: 580,
+    margin: '200px auto',
+    maxWidth: 700,
+    height:800,
+    padding:'35px'
   },
   image: {
     width: 328,
@@ -37,21 +39,117 @@ const useStyles = makeStyles((theme) => ({
     },
     color: "#f6f8f9",
     background: "#375C23",
-    padding: "12px 18px",
-    fontSize: "14px",
+    padding: "22px 28px",
+    fontSize: "30px",
     lineHeight: "16px",
     height: "auto",
     borderWidth: "0",
     borderRadius: "20px",
-    left: '10vw',
-    top: 30,
+    left: '7vw',
+    top: 130,
     marginBottom: 50,
   },
   welcome: {
-    fontSize: "25px",
+    fontSize: "39px",
     paddingLeft: '10%',
-    margin: '11% 1%'
+    margin: '10% 1%',
+    color: '#375C23'
   },
+  room: {
+    "&:hover": {
+      borderColor: "green",
+      boxShadow: "0 1px 6px rgb(32 33 36 / 28%)",
+    },
+    "&:focus": {
+      borderColor: "rgba(223,225,229,0)",
+      boxShadow: "0 1px 6px rgb(32 33 36 / 28%)",
+    },
+    backgroundColor: "#00000000",
+    display: "flex",
+    border: " 1px solid #dfe1e5",
+    borderRadius: "24px",
+    height: "80px",
+    width: "600px",
+    outline: "none",
+    textIndent: "30px",
+    textDecoration: "none",
+  },
+name: {
+  "&:hover": {
+    borderColor: "green",
+    boxShadow: "0 1px 6px rgb(32 33 36 / 28%)",
+  },
+  "&:focus": {
+    borderColor: "rgba(223,225,229,0)",
+    boxShadow: "0 1px 6px rgb(32 33 36 / 28%)",
+  },
+  backgroundColor: "#00000000",
+  display: "flex",
+  border: " 1px solid #dfe1e5",
+  borderRadius: "24px",
+  height: "80px",
+  width: "600px",
+  outline: "none",
+  textIndent: "30px",
+  textDecoration: "none",
+},
+mainDiv: {
+  height: 2000,
+  margin: '-50px 0px'
+},
+padding:{
+  padding: '1vw'
+},
+messagebtn: {
+  "&:hover": {
+    borderColor: "#375C23",
+    boxShadow: "0 1px 6px #adcaec",
+    backgroundColor: "#C2F0AA",
+    color: "#375C23"
+  },
+  color: "#f6f8f9",
+  background: "#375C23",
+  padding: "22px 28px",
+  fontSize: "30px",
+  lineHeight: "16px",
+  height: "auto",
+  borderWidth: "0",
+  margin: '-97% 3%',
+  borderRadius: "20px",
+  left: '8vw',
+  top: 160,
+  marginBottom: 50,
+},
+welcome: {
+  fontSize: "39px",
+  paddingLeft: '10%',
+  margin: '10% -10%',
+  color: '#375C23'
+},
+sendmsg:{
+  "&:hover": {
+    borderColor: "green",
+    boxShadow: "0 1px 6px rgb(32 33 36 / 28%)",
+  },
+  "&:focus": {
+    borderColor: "rgba(223,225,229,0)",
+    boxShadow: "0 1px 6px rgb(32 33 36 / 28%)",
+  },
+  backgroundColor: "#00000000",
+  display: "flex",
+  margin:"200px 0px",
+  border: " 1px solid #dfe1e5",
+  borderRadius: "24px",
+  height: "80px",
+  width: "600px",
+  outline: "none",
+  textIndent: "30px",
+  textDecoration: "none",
+  fontSize: "24px"
+},
+messageIndividual:{
+  fontSize: '25px'
+}
 }));
 
 let socket;
@@ -101,7 +199,7 @@ export default function Home() {
     console.log("Test")
   };
   return (
-    <div>
+    <div className={classes.mainDiv} style={{backgroundImage: 'url("/assets/background.jpg")'}}>
       <SideDrawer />
       <Paper className={classes.paper}>
         <Grid container spacing={2}>
@@ -112,14 +210,17 @@ export default function Home() {
                 <div className="logIn">
                   <div className="inputs">
                     <input
+                    className={classes.name}
                       type="text"
                       placeholder="Name..."
                       onChange={(e) => {
                         setUserName(e.target.value);
                       }}
                     />
+                    <div className={classes.padding}/>
                     <input
                       type="text"
+                      className={classes.room}
                       placeholder="Room..."
                       onChange={(e) => {
                         setRoom(e.target.value);
@@ -138,7 +239,7 @@ export default function Home() {
                           className="messageContainer"
                           id={val.author === userName ? "You" : "Other"}
                         >
-                          <div className="messageIndividual">
+                          <div className={classes.messageIndividual}>
                             {val.author}: {val.message}
                           </div>
                         </div>
@@ -148,6 +249,7 @@ export default function Home() {
 
                   <div className="messageInputs">
                     <input
+                      className={classes.sendmsg}
                       type="text"
                       placeholder="Message..."
                       value={message}
@@ -156,7 +258,7 @@ export default function Home() {
                       }}
                     />
                     {/* have the sendMessage clear the messageInputs div */}
-                    <Button className={classes.sendbtn} onClick={sendMessage}>Send</Button>
+                    <Button className={classes.messagebtn} onClick={sendMessage}>Send</Button>
                   </div>
                 </div>
               )}

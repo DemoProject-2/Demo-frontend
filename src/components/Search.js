@@ -6,6 +6,7 @@ import {
 } from "@material-ui/core";
 import { http } from '../lib/http';
 import "./Search.css"
+import { Link } from "react-router-dom";
 import React from "react";
 import SideDrawer from "./AuthenticatedSideDrawer.js"
 import { AuthContext } from '../context/auth-context'
@@ -24,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
     border: " 1px solid #dfe1e5",
     borderRadius: "24px",
     height: "80px",
-    margin: "0px 25%",
+    margin: "70px 25%",
     width: "1000px",
     outline: "none",
     textIndent: "30px",
@@ -63,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
     height: "auto",
     borderWidth: "0",
     borderRadius: "40px",
-    top: -80,
+    top: -140,
     marginBottom: '2%',
     left: '23%',
   },
@@ -266,7 +267,6 @@ export default function Search() {
               ReactDOM.render(<h1>Match Could Not Be Found</h1>, document.getElementById('list'))}})}}}
   return (
     <body>
-      <SideDrawer />
       {/* Form now prints to console, now just needs to change what is displayed to the screen */}
 
       <form>

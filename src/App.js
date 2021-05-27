@@ -4,7 +4,7 @@ import SignIn from "./components/SignIn.js"
 import AccountProfile from "./components/AccountProfile.js"
 import Register from "./components/Register.js"
 import Search from "./components/Search.js"
-import Chat from "./components/Chat.js"
+import OldChat from "./components/OldChat.js"
 import { BrowserRouter as Router, Switch, Route, Redirect, } from "react-router-dom";
 import Notes from "./components/Notes.js";
 import { AuthContext } from './context/auth-context'
@@ -27,7 +27,7 @@ function AuthenticatedApp() {
           <Search />
         </Route>
         <Route path="/chat">
-          <Chat />
+          <OldChat />
         </Route>
         <Route path="/">
           <AccountProfile />
