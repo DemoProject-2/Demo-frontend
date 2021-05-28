@@ -168,8 +168,9 @@ export default function Home() {
   const [message, setMessage] = useState("");
   const [messageList, setMessageList] = useState([]);
 
+  const url = process.env.NODE_ENV === 'production' ? 'https://mental-health-database.herokuapp.com' : 'http://localhost:3030'
   useEffect(() => {
-    socket = io('https://mental-health-database.herokuapp.com/');
+    socket = io(url);
     return () => {
       socket.disconnect();
     }
