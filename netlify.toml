@@ -19,7 +19,7 @@ to = "/sign-in"
 status = 301
 force = false
 [[redirects]]
-from = "/demo-app/src/components/Chat.js"
+from = "/demo-app/src/components/OldChat.js"
 to = "/chat"
 status = 301
 force = false
